@@ -2632,7 +2632,7 @@ select[multiple].input-lg,
 
 .btn-primary {
   color: white;
-  background-color: #c53c3d;
+  background-color: #ff6464;
   border-color: #b23536; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     color: white;
@@ -2641,10 +2641,10 @@ select[multiple].input-lg,
   .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     background-image: none; }
   .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
-    background-color: #c53c3d;
+    background-color: #ff6464;
     border-color: #b23536; }
   .btn-primary .badge {
-    color: #c53c3d;
+    color: #ff6464;
     background-color: white; }
 
 .btn-success {
@@ -6545,12 +6545,12 @@ img {
   .social-icons i {
     font-size: 2em; }
   .social-icons a:hover i {
-    color: #c53c3d; }
+    color: #ff6464; }
 
 a {
-  color: #c53c3d; }
+  color: #ff6464; }
   a:hover {
-    color: #c53c3d; }
+    color: #ff6464; }
 
 .avatar {
   -webkit-animation-duration: 300ms;
