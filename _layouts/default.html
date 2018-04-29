@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-US" class="philipp-spiess">
+
+<head>
+  <title>{% if page.title %}{{ page.title | xml_escape }} &mdash; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Philipp Spiess">
+  <meta name="city" content="Vienna">
+  <meta name="country" content="Austria">
+  <meta name="state" content="Vienna">
+  <meta name="zipcode" content="1190">
+  <meta name="geo.position" content="48.208174;16.373819">
+  <meta name="geo.placename" content="Vienna, VIE">
+  <meta name="geo.region" content="AT">
+  <meta name="robots" content="index, follow">
+
+
+  {% seo title=false %}
+
+  <link rel="shortcut icon" href="http://gravatar.com/avatar/046db2877d2f9342de37d0d59c5df4a9?s=32" type="image/x-icon">
+  <link rel="stylesheet" href="{{ "/assets/css/index.css" | relative_url }}">
+
+  {% feed_meta %}
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-30352287-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "UA-30352287-1");
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    {{ content }}
+  </div>
+</body>
+</html>

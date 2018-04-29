@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<div class="about" style="display:none">
+  <img
+    src="https://secure.gravatar.com/avatar/046db2877d2f9342de37d0d59c5df4a9?s=400"
+    class="avatar animated fadeInDown"
+    width="200"
+  />
+  <div class="title">
+    <h1 class="animated fadeInDown">Philipp Spiess</h1>
+    <h3 class="animated fadeInDown">
+      JavaScript | React | WebAssembly | Elixir
+    </h3>
+  </div>
+  <h2 class="animated fadeIn">
+    I’m a Vienna based software engineer with an affection for interaction
+    design.<br />
+    I work for <a href="https://pspdfkit.com">PSPDFKit</a> where I build
+    industry leading PDF frameworks.
+  </h2>
+  <ul class="list-inline social-icons">
+    <li>
+      <a
+        href="https://github.com/philipp-spiess"
+        class="github animated fadeIn"
+      >
+        <i class="icon-github"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        href="mailto:hello@philippspiess.com"
+        class="email animated fadeIn"
+      >
+        <i class="icon-mail"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.linkedin.com/in/philipp-spiess"
+        class="linkedin animated fadeIn"
+      >
+        <i class="icon-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://twitter.com/philippspiess"
+        class="twitter animated fadeIn"
+      >
+        <i class="icon-twitter"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<script>
+  var i = new Image();
+  var show = function() {
+    document.querySelector('.about').style.display = 'block';
+  };
+  i.onload = show
+  i.onerror = show
+  i.src = 'https://secure.gravatar.com/avatar/046db2877d2f9342de37d0d59c5df4a9?s=400';
+</script>

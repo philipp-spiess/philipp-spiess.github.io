@@ -11,16 +11,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'icons';
-    src: url('../fonts/icons.svg?27260619#icons') format('svg');
-  }
-}
-*/
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
@@ -70,3 +60,17 @@
 .icon-github:before {
   content: "💻";
 } /* '\1f4bb' */
+
+/**
+ * Since we won't show the main .about text while we wait for the avatar to
+ * load, the browser also does not start to fetch the webfont. To work around
+ * this, we make sure that there is at least a glyph that is renderd as soon
+ * as the CSS is parsed.
+ */
+body:before {
+  font-family: "icons";
+  content: "🐦";
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+}

@@ -1,23 +1,17 @@
 # philippspiess.com
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+For an overview of the project structure please refer to the [Jekyll documentation](https://jekyllrb.com/docs/home/).
 
 ## Install
 
-Make sure that you have the Gatsby CLI program installed:
+Make sure that you have Ruby and `bundler` installed.
 
 ```sh
-yarn global add gatsby-cli
+bundle
 ```
 
 Then you can run it by:
 
 ```sh
-yarn develop
-```
-
-## Deploy
-
-```sh
-yarn deploy
+script/server
 ```
