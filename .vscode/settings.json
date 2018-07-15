@@ -1,5 +1,9 @@
 {
   "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/_site": true,
+    "**/.sass-cache": true
+  },
   "[html]": {
     "editor.formatOnSave": false
   }
