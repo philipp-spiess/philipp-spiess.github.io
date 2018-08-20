@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	<title>Events</title>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<button id="button">Click Me</button>
+  <pre id="log"></pre>
+
+  <script>
+  function log(text) {
+    document.getElementById("log").innerText =
+      document.getElementById("log").innerText + "\n" + text;
+  }
+  function flush() {
+    document.getElementById("log").innerText = "";
+  }
+
+  document.getElementById("button").onclick = function(event) {
+    flush();
+
+    var object = event;
+    var i = 0;
+    var properties = [];
+    while (object.constructor.name !== "Object" && i < 10) {
+      properties = properties.concat(Object.keys(object));
+      var keys = Object.keys(object).join(", ");
+      log(`${object.constructor.name} (${keys})`);
+      object = Object.getPrototypeOf(object);
+      i++;
+    }
+
+    log("");
+    log(properties.join(", "));
+  };
+
+  </script>
+</body>
+
+</html>
