@@ -98,7 +98,7 @@
       color: white;
     }
 
-    button, a.button {
+    .button {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -127,7 +127,7 @@
       top: 6px;
     }
 
-    button {
+    .button-right {
       margin-left: 20px;
     }
 
@@ -135,7 +135,7 @@
       button, a.button {
         width: 100%;
       }
-      button {
+      .button-right {
         margin-left: 0;
         margin-top: 10px;
       }
@@ -159,7 +159,8 @@
       </div>
 
       <a class="button" href="https://twitter.com/PhilippSpiess">Follow on Twitter <span class="button-icon"><img src="./twitter.svg" width="30px" alt="🐦" /></span></a>
-      <button id="subscribe">Subscribe Now <span class="button-icon">💌</span></button>
+      <a class="button button-right" href="https://eepurl.com/dHV-3X">Subscribe Now <span class="button-icon">💌</span></a>
+
       <h3>Made with <img src="./react.svg" width="20px" alt="⚛️" /> by <a href="/">@PhilippSpiess</a></h3>
     </section>
   </div>
@@ -189,17 +190,6 @@
         createRandomAtom(x, y);
       }
     }
-  </script>
-  <script src="https://downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-  <script>
-    // Don't allow Mailchimp to set or read cookies.
-    Object.defineProperty(document, "cookie", { set: function() {}, get: function() { return "" ; } });
-
-    document.getElementById("subscribe").onclick = function () {
-      window.dojoRequire(["mojo/signup-forms/Loader"], function(L) {
-        L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"155aa5558694a008de40fe987","lid":"9921ef9d30","uniqueMethods":true})
-      });
-    };
   </script>
 
   <script type="text/javascript">
