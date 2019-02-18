@@ -1,75 +1,42 @@
-import React from "react"
-import { Link } from "gatsby"
+import { css } from "linaria";
+import { Link, StaticQuery, graphql } from "gatsby";
+import React from "react";
+import Image from "gatsby-image";
 
-import { rhythm, scale } from "../utils/typography"
-
-class Layout extends React.Component {
-  render() {
-    const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
-
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
+export const globals = css`
+  :global() {
+    html {
+      background-color: #fffcf5;
     }
-    return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        <header>{header}</header>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    )
   }
+`;
+
+export default function Layout(props) {
+  return (
+    <StaticQuery
+      query={layoutQuery}
+      render={data => {
+        const { author } = data.site.siteMetadata;
+
+        return props.children;
+      }}
+    />
+  );
 }
 
-export default Layout
+const layoutQuery = graphql`
+  query LayoutQuery {
+    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 30, height: 30) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        author
+      }
+    }
+  }
+`;

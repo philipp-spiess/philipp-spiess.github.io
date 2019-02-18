@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                external
               }
             }
           }
@@ -31,7 +32,10 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allMarkdownRemark.edges.filter(post => {
+      const isExternal = !!post.node.frontmatter.external
+      return !isExternal
+    })
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node

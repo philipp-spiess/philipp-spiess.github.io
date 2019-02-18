@@ -1,16 +1,69 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import { css } from "linaria";
+import { Link, graphql } from "gatsby";
+import React from "react";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm } from "../utils/typography";
+import Bio from "../components/bio";
 
-class BlogIndex extends React.Component {
+const container = css`
+  min-height: 100vh;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 700px) {
+    flex-direction: row;
+  }
+`;
+
+const containerInverse = css`
+  flex-direction: column-reverse;
+`;
+
+const left = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 3.5rem;
+  padding-left: calc(1.75rem / 2);
+  padding-right: calc(1.75rem / 2);
+  height: 100%;
+
+  @media screen and (min-width: 500px) {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+
+
+  @media screen and (min-width: 700px) {
+    width: 350px;
+  }
+`;
+
+const right = css`
+  min-height: 100vh;
+  padding-bottom: 3.5rem;
+  padding-left: calc(1.75rem / 2);
+  padding-right: calc(1.75rem / 2);
+
+  @media screen and (min-width: 500px) {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+`;
+
+export default class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMarkdownRemark.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -18,31 +71,74 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <div className={container}>
+          <aside className={left}>
+            <Bio />
+          </aside>
+          <main className={right}>
+            {posts.map(({ node }) => {
+              const external = node.frontmatter.external;
+
+              return external ? (
+                <ExternalPost key={node.fields.slug} node={node} />
+              ) : (
+                <Post key={node.fields.slug} node={node} />
+              );
+            })}
+          </main>
+        </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+const postTitle = css`
+  margin-top: calc(3.5rem / 4 * 3);
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: 500px) {
+    margin-top: 3.5rem;
+  }
+`;
+
+function Post(props) {
+  const { node } = props;
+
+  const title = node.frontmatter.title || node.fields.slug;
+
+  return (
+    <div key={node.fields.slug}>
+      <h3 className={postTitle}>
+        <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+          {title}
+        </Link>
+      </h3>
+      <small>{node.frontmatter.date}</small>
+      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+    </div>
+  );
+}
+
+function ExternalPost(props) {
+  const { node } = props;
+  const title = node.frontmatter.title || node.fields.slug;
+  const external = node.frontmatter.external;
+
+  const domain = external.split("/")[2];
+
+  return (
+    <div key={node.fields.slug}>
+      <h3 className={postTitle}>
+        <OutboundLink href={external} style={{ boxShadow: `none` }}>
+          {title}
+        </OutboundLink>
+      </h3>
+      <small>
+        {node.frontmatter.date} • {domain}
+      </small>
+    </div>
+  );
+}
 
 export const pageQuery = graphql`
   query {
@@ -61,9 +157,10 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            external
           }
         }
       }
     }
   }
-`
+`;
