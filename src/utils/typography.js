@@ -53,7 +53,7 @@ const typography = new Typography({
       }
     },
     "h1,h2,h3,h4,h5,h6": {
-      marginTop: rhythm(2)
+      marginTop: rhythm(1)
     },
     h4: {
       letterSpacing: "0.140625em",
