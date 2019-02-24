@@ -1,7 +1,7 @@
 import { css } from "linaria";
 import { Link, StaticQuery, graphql } from "gatsby";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-import Image from "gatsby-image";
+import Avatar from "./avatar";
 import React from "react";
 
 const bio = css`
@@ -72,16 +72,8 @@ export default function Bio() {
         return (
           <div className={`${bio} bio`}>
             <div className={avatar}>
-              <Link style={noLinkStyle} to={`/`}>
-                <Image
-                  fadeIn={false}
-                  fixed={data.avatar.childImageSharp.fixed}
-                  alt={author}
-                  className={image}
-                  imgStyle={{
-                    borderRadius: `50%`
-                  }}
-                />
+              <Link style={noLinkStyle} to="/">
+                <Avatar width={100} />
               </Link>
             </div>
             <div className={about}>
@@ -158,13 +150,6 @@ export default function Bio() {
 
 const bioQuery = graphql`
   query BioQuery {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 100, height: 100) {
-          ...GatsbyImageSharpFixed_noBase64
-        }
-      }
-    }
     site {
       siteMetadata {
         author

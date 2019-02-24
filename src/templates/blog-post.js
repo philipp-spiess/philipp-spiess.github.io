@@ -1,9 +1,9 @@
 import { css } from "linaria";
 import { Link, graphql } from "gatsby";
-import Image from "gatsby-image";
 import React from "react";
 
 import { rhythm, scale } from "../utils/typography";
+import Avatar from "../components/avatar";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -24,7 +24,7 @@ const header = css`
     font-size: 1.2rem;
   }
 
-  .gatsby-image-wrapper {
+  img {
     margin-top: calc((3.5rem - 30px) / 2);
     margin-bottom: calc((3.5rem - 30px) / 2);
   }
@@ -63,12 +63,6 @@ const headerContainer = css`
   display: flex;
 `;
 
-const image = css`
-  margin-bottom: 0;
-  min-width: 30px;
-  border-radius: 100%;
-`;
-
 export default function BlogPostTemplate(props) {
   const post = props.data.markdownRemark;
 
@@ -82,15 +76,7 @@ export default function BlogPostTemplate(props) {
       <header className={header}>
         <div className={`${container} ${headerContainer}`}>
           <div>
-            <Image
-              fadeIn={false}
-              fixed={props.data.avatar.childImageSharp.fixed}
-              alt={author}
-              className={image}
-              imgStyle={{
-                borderRadius: `50%`
-              }}
-            />
+            <Avatar width={30} />
             <h3>{author}</h3>
           </div>
           <div className={spacer} />
@@ -163,13 +149,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-      }
-    }
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 30, height: 30) {
-          ...GatsbyImageSharpFixed_noBase64
-        }
       }
     }
   }
