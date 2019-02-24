@@ -19,6 +19,14 @@ export const globals = css`
       }
     }
 
+    /* Inline Code */
+    :not(pre) > code[class*="language-"] {
+      border-radius: 0.3em;
+      background: #1a1d27;
+      color: white;
+      padding: 0.15em 0.3em;
+    }
+
     /**
      * @TODO make sure this looks similiar to images and then get the lucy theme working
      * Based on copypasta from Remy Bach, Sarah Drasner, Dan Abramov

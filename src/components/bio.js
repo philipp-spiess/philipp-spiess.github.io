@@ -74,6 +74,7 @@ export default function Bio() {
             <div className={avatar}>
               <Link style={noLinkStyle} to={`/`}>
                 <Image
+                  fadeIn={false}
                   fixed={data.avatar.childImageSharp.fixed}
                   alt={author}
                   className={image}
@@ -160,7 +161,7 @@ const bioQuery = graphql`
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
       childImageSharp {
         fixed(width: 100, height: 100) {
-          ...GatsbyImageSharpFixed
+          ...GatsbyImageSharpFixed_noBase64
         }
       }
     }

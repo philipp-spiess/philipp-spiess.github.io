@@ -15,7 +15,7 @@ const typography = new Typography({
   boldWeight: 700,
   overrideStyles: ({ adjustFontSizeTo, scale, rhythm }, options) => ({
     h1: {
-      fontFamily: ["'IBM Plex Sans Condensed'", "sans-serif"].join(",")
+      fontFamily: "Tahoma, Helvetica, sans-serif"
     },
     blockquote: {
       ...scale(1 / 5),

@@ -136,6 +136,7 @@ function ExternalPost(props) {
       <small>
         {node.frontmatter.date} • {domain}
       </small>
+      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
     </div>
   );
 }

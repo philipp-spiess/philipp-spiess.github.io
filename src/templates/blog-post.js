@@ -83,6 +83,7 @@ export default function BlogPostTemplate(props) {
         <div className={`${container} ${headerContainer}`}>
           <div>
             <Image
+              fadeIn={false}
               fixed={props.data.avatar.childImageSharp.fixed}
               alt={author}
               className={image}
@@ -167,7 +168,7 @@ export const pageQuery = graphql`
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
       childImageSharp {
         fixed(width: 30, height: 30) {
-          ...GatsbyImageSharpFixed
+          ...GatsbyImageSharpFixed_noBase64
         }
       }
     }
