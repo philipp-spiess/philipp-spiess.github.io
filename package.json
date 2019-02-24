@@ -48,9 +48,14 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && cp CNAME public/CNAME",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public -b master"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
   }
 }
