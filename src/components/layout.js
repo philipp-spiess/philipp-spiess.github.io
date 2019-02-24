@@ -142,8 +142,8 @@ export const globals = css`
       -webkit-overflow-scrolling: touch;
       overflow: auto;
 
-      margin-left: -5px !important;
-      margin-right: -5px !important;
+      margin-left: calc(-1.75rem / 2) !important;
+      margin-right: calc(-1.75rem / 2) !important;
       max-width: 610px !important;
 
       @media screen and (min-width: 700px) {

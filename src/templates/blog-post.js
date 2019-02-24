@@ -41,12 +41,12 @@ const spacer = css`
 
 const container = css`
   max-width: 610px;
-  padding: 0 5px;
+  padding: 0 calc(1.75rem / 2);
   margin: 0 auto;
 
   .gatsby-resp-image-wrapper {
-    margin-left: -5px !important;
-    margin-right: -5px !important;
+    margin-left: calc(-1.75rem / 2) !important;
+    margin-right: calc(-1.75rem / 2) !important;
     max-width: 610px !important;
     overflow: hidden;
 
