@@ -59,7 +59,7 @@ module.exports = {
         name: "Philipp Spiess Blog",
         short_name: "Philipp Spiess",
         start_url: "/",
-        background_color: "#ffffff",
+        background_color: "#fffcf5",
         theme_color: "#8c7001",
         display: "minimal-ui",
         icon: "content/assets/profile-pic.jpg"

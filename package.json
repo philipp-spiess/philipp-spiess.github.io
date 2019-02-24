@@ -1,11 +1,10 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "philippspiess",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "1.0.0",
+  "author": "Philipp Spiess <hello@philippspiess.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/philipp-spiess/philipp-spiess.github.io/pulls"
   },
   "dependencies": {
     "babel-preset-gatsby": "^0.1.8",
