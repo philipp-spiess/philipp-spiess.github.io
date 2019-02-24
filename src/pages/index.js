@@ -61,8 +61,15 @@ export default class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          title="Philipp Spiess"
+          keywords={[
+            "blog",
+            "javascript",
+            "react",
+            "webassembly",
+            "elixir",
+            "ruby"
+          ]}
         />
         <div className={`${container} index`}>
           <aside className={left}>

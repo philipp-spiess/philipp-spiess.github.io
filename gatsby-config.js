@@ -2,8 +2,9 @@ module.exports = {
   siteMetadata: {
     title: "Philipp Spiess",
     author: "Philipp Spiess",
-    description: "A starter blog demonstrating what Gatsby can do.",
-    siteUrl: "https://gatsby-starter-blog-demo.netlify.com/"
+    description:
+      "Lead Engineer at PSPDFKit for Web, React DOM team member, and curator of This Week in React. He loves learning and building usable interaction designs.",
+    siteUrl: "https://philippspiess.com"
   },
   plugins: [
     {
@@ -28,7 +29,7 @@ module.exports = {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 700,
-              linkImagesToOriginal: false,
+              linkImagesToOriginal: false
             }
           },
           {
@@ -48,7 +49,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "UA-30352287-1",
+        trackingId: "UA-30352287-1"
       }
     },
     "gatsby-plugin-feed",
