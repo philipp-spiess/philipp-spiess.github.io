@@ -1,18 +1,29 @@
 import { css } from "linaria";
-import { Link, StaticQuery, graphql } from "gatsby";
 import React from "react";
-import Image from "gatsby-image";
 
 export const globals = css`
   :global() {
     html {
       background-color: #fffcf5;
-      background: linear-gradient(180deg, #fffcf5 0%, #fffbf4 100%);
+    }
+
+    .post .bio {
+      @media screen and (min-width: 560px) {
+        flex-direction: row !important;
+      }
+    }
+
+    .index .bio {
+      @media screen and (max-width: 700px) and (min-width: 560px) {
+        flex-direction: row !important;
+      }
     }
 
     /**
      * @TODO make sure this looks similiar to images and then get the lucy theme working
-     * Based on copypasta from Remy Bach and Sarah Drasner
+     * Based on copypasta from Remy Bach, Sarah Drasner, Dan Abramov
+     * Theme is Lucy by Juliette Prétot
+     * https://github.com/juliettepretot/lucy-vscode-theme
      */
     code[class*="language-"],
     pre[class*="language-"] {
@@ -45,97 +56,67 @@ export const globals = css`
       padding: 1.3125rem;
     }
 
-    pre[class*="language-"]::-moz-selection {
-      /* Firefox */
-      background: hsl(207, 4%, 16%);
-    }
-
-    pre[class*="language-"]::selection {
-      /* Safari */
-      background: hsl(207, 4%, 16%);
-    }
-
-    /* Text Selection colour */
-    pre[class*="language-"]::-moz-selection,
-    pre[class*="language-"] ::-moz-selection {
-      text-shadow: none;
-      background: hsla(0, 0%, 100%, 0.15);
-    }
-
-    pre[class*="language-"]::selection,
-    pre[class*="language-"] ::selection {
-      text-shadow: none;
-      background: hsla(0, 0%, 100%, 0.15);
-    }
-
-    /* Inline code */
-    :not(pre) > code[class*="language-"] {
-      border-radius: 0.3em;
-      background: var(--inlineCode-bg);
-      color: var(--inlineCode-text);
-      padding: 0.15em 0.2em 0.05em;
-      white-space: normal;
-    }
-
     .token.attr-name {
-      color: rgb(173, 219, 103);
-      font-style: italic;
+      color: green;
     }
 
     .token.comment {
-      color: rgb(128, 147, 147);
+      color: #5e6173;
+      font-style: italic;
     }
 
     .token.string,
     .token.url {
-      color: rgb(173, 219, 103);
+      color: #e8d56d;
     }
 
     .token.variable {
-      color: rgb(214, 222, 235);
+      color: green;
     }
 
     .token.number {
-      color: rgb(247, 140, 108);
+      color: #af98e6;
     }
 
     .token.builtin,
     .token.char,
-    .token.constant,
     .token.function {
-      color: rgb(130, 170, 255);
+      color: #76c5a4;
+    }
+
+    .token.constant {
+      color: #56c9db;
     }
 
     .token.punctuation {
-      color: rgb(199, 146, 234);
+      color: #88898f;
     }
 
     .token.selector,
     .token.doctype {
-      color: rgb(199, 146, 234);
-      font-style: "italic";
+      color: green;
     }
 
     .token.class-name {
-      color: rgb(255, 203, 139);
+      color: #76c5a4;
     }
 
     .token.tag,
     .token.operator,
     .token.keyword {
-      color: #ffa7c4;
+      color: #fb7da7;
     }
 
     .token.boolean {
-      color: rgb(255, 88, 116);
+      color: #af98e6;
     }
 
     .token.property {
-      color: rgb(128, 203, 196);
+      color: green;
     }
 
     .token.namespace {
-      color: rgb(178, 204, 214);
+      color: green;
     }
 
     pre[data-line] {
@@ -155,15 +136,24 @@ export const globals = css`
 
     .gatsby-highlight {
       margin-bottom: 1.75rem;
-      margin-left: -1.3125rem;
-      margin-right: -1.3125rem;
+
       border-radius: 10px;
-      background: #011627;
+      background: #1a1d27;
       -webkit-overflow-scrolling: touch;
       overflow: auto;
+
+      margin-left: -5px !important;
+      margin-right: -5px !important;
+      max-width: 610px !important;
+
+      @media screen and (min-width: 700px) {
+        margin-left: -50px !important;
+        margin-right: -50px !important;
+        max-width: 700px !important;
+      }
     }
 
-    @media (max-width: 672px) {
+    @media (max-width: 700px) {
       .gatsby-highlight {
         border-radius: 0;
       }
@@ -176,32 +166,10 @@ export const globals = css`
   }
 `;
 
-export default function Layout(props) {
-  return (
-    <StaticQuery
-      query={layoutQuery}
-      render={data => {
-        const { author } = data.site.siteMetadata;
-
-        return props.children;
-      }}
-    />
-  );
-}
-
-const layoutQuery = graphql`
-  query LayoutQuery {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 30, height: 30) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        author
-      }
-    }
-  }
+const layout = css`
+  margin-bottom: 3.5rem;
 `;
+
+export default function Layout(props) {
+  return <div className={layout}>{props.children}</div>;
+}

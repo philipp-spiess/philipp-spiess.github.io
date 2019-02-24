@@ -1,13 +1,12 @@
-import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
 import { css } from "linaria";
+import { Link, graphql } from "gatsby";
 import Image from "gatsby-image";
+import React from "react";
 
+import { rhythm, scale } from "../utils/typography";
 import Bio from "../components/bio";
-
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { rhythm, scale } from "../utils/typography";
 
 const header = css`
   width: 100%;
@@ -20,6 +19,7 @@ const header = css`
     vertical-align: top;
     line-height: 3.5rem;
     margin-left: 0.75rem;
+    font-weight: 700;
 
     font-size: 1.2rem;
   }
@@ -48,8 +48,10 @@ const container = css`
     margin-left: -5px !important;
     margin-right: -5px !important;
     max-width: 610px !important;
+    overflow: hidden;
 
     @media screen and (min-width: 700px) {
+      border-radius: 10px;
       margin-left: -50px !important;
       margin-right: -50px !important;
       max-width: 700px !important;
@@ -73,11 +75,10 @@ export default function BlogPostTemplate(props) {
   const { siteMetadata } = props.data.site;
 
   const { previous, next } = props.pageContext;
-  const { author, title } = siteMetadata;
-  const { siteTitle } = title;
+  const { author } = siteMetadata;
 
   return (
-    <>
+    <Layout>
       <header className={header}>
         <div className={`${container} ${headerContainer}`}>
           <div>
@@ -97,7 +98,7 @@ export default function BlogPostTemplate(props) {
           </div>
         </div>
       </header>
-      <div className={container}>
+      <div className={`${container} post`}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <h1>{post.frontmatter.title}</h1>
         <p
@@ -140,9 +141,10 @@ export default function BlogPostTemplate(props) {
             </ul>
           </>
         ) : null}
+        <h4 style={{ marginTop: "3.5rem" }}>About the author</h4>
         <Bio />
       </div>
-    </>
+    </Layout>
   );
 }
 
@@ -150,7 +152,6 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
-        title
         author
       }
     }

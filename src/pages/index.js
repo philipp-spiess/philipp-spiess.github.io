@@ -1,11 +1,10 @@
 import { css } from "linaria";
 import { Link, graphql } from "gatsby";
-import React from "react";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
+import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { rhythm } from "../utils/typography";
 import Bio from "../components/bio";
 
 const container = css`
@@ -21,16 +20,12 @@ const container = css`
   }
 `;
 
-const containerInverse = css`
-  flex-direction: column-reverse;
-`;
-
 const left = css`
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  padding-top: 3.5rem;
+  padding-top: 1.75rem;
   padding-left: calc(1.75rem / 2);
   padding-right: calc(1.75rem / 2);
   height: 100%;
@@ -40,15 +35,13 @@ const left = css`
     padding-right: 1.75rem;
   }
 
-
-
   @media screen and (min-width: 700px) {
+    padding-top: 3.5rem;
     width: 350px;
   }
 `;
 
 const right = css`
-  min-height: 100vh;
   padding-bottom: 3.5rem;
   padding-left: calc(1.75rem / 2);
   padding-right: calc(1.75rem / 2);
@@ -71,7 +64,7 @@ export default class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <div className={container}>
+        <div className={`${container} index`}>
           <aside className={left}>
             <Bio />
           </aside>
