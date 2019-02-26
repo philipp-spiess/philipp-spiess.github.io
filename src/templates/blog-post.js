@@ -57,6 +57,14 @@ const container = css`
       max-width: 700px !important;
     }
   }
+
+  video {
+    max-width: 100%;
+  }
+
+  .footnotes > ol > li > p {
+    display: inline;
+  }
 `;
 
 const headerContainer = css`
