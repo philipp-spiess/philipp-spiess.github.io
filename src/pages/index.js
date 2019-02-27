@@ -78,11 +78,16 @@ export default class BlogIndex extends React.Component {
           <main className={right}>
             {posts.map(({ node }) => {
               const external = node.frontmatter.external;
+              const readingTime = node.fields.readingTime.text;
 
               return external ? (
                 <ExternalPost key={node.fields.slug} node={node} />
               ) : (
-                <Post key={node.fields.slug} node={node} />
+                <Post
+                  key={node.fields.slug}
+                  readingTime={readingTime}
+                  node={node}
+                />
               );
             })}
           </main>
@@ -102,7 +107,7 @@ const postTitle = css`
 `;
 
 function Post(props) {
-  const { node } = props;
+  const { node, readingTime } = props;
 
   const title = node.frontmatter.title || node.fields.slug;
 
@@ -113,7 +118,9 @@ function Post(props) {
           {title}
         </Link>
       </h3>
-      <small>{node.frontmatter.date}</small>
+      <small>
+        {node.frontmatter.date} • {readingTime}
+      </small>
       <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
     </div>
   );
@@ -154,6 +161,9 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
+            readingTime {
+              text
+            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")

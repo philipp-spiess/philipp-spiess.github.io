@@ -104,7 +104,7 @@ export default function BlogPostTemplate(props) {
             marginTop: rhythm(-1)
           }}
         >
-          {post.frontmatter.date}
+          {post.frontmatter.date} • {post.fields.readingTime.text}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         {previous || previous ? (
@@ -157,6 +157,11 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
   }
