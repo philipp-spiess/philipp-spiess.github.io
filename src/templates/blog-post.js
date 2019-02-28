@@ -44,22 +44,19 @@ const container = css`
   padding: 0 calc(1.75rem / 2);
   margin: 0 auto;
 
-  .gatsby-resp-image-wrapper {
-    margin-left: calc(-1.75rem / 2) !important;
-    margin-right: calc(-1.75rem / 2) !important;
-    max-width: 610px !important;
+  .gatsby-resp-image-wrapper, video, iframe {
+    margin-left: calc(100% / 2 - 100vw / 2 )!important
+    margin-right: calc(100% / 2 - 100vw / 2 )!important
+    width: 100vw !important;
     overflow: hidden;
 
     @media screen and (min-width: 700px) {
       border-radius: 10px;
       margin-left: -50px !important;
       margin-right: -50px !important;
-      max-width: 700px !important;
+      width: auto !import;
+      max-width: calc(700px - 1.75rem / 2) !important;
     }
-  }
-
-  video {
-    max-width: 100%;
   }
 
   .footnotes > ol > li > p {

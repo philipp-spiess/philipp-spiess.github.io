@@ -63,7 +63,7 @@ const typography = new Typography({
       fontStyle: "italic"
     },
     a: {
-      boxShadow: "0 1px 0 0 currentColor",
+      boxShadow: "inset 0 -1px 0 0 currentColor",
       color: "#8e6e15",
       textDecoration: "none"
     },

@@ -106,7 +106,7 @@ export const globals = css`
     }
 
     .token.class-name {
-      color: #76c5a4;
+      color: #56c9db;
     }
 
     .token.tag,
@@ -150,14 +150,15 @@ export const globals = css`
       -webkit-overflow-scrolling: touch;
       overflow: auto;
 
-      margin-left: calc(-1.75rem / 2) !important;
-      margin-right: calc(-1.75rem / 2) !important;
-      max-width: 610px !important;
+      margin-left: calc(100% / 2 - 100vw / 2 )!important
+      margin-right: calc(100% / 2 - 100vw / 2 )!important
+      width: 100vw !important;
 
       @media screen and (min-width: 700px) {
         margin-left: -50px !important;
         margin-right: -50px !important;
-        max-width: 700px !important;
+        width: auto !import;
+        max-width: calc(700px - 1.75rem / 2) !important;
       }
     }
 
