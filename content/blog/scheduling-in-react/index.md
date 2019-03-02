@@ -15,11 +15,11 @@ To visualize what happens when this is not the case, let's take a look at the de
 
 The application works like this: The more you type into the input below, the more detailed the charts below will get. Since both of those updates (the input element and the chart) run at the same time, the input feels janky if we type a lot of text:
 
-<video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay loop></video>
+<video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
 In this example though, it's more important to update the text box with the user input as opposed to updating the charts. A version that prioritizes the input will appear a lot more responsive to the end user although the same computation time is required:
 
-<video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay loop></video>
+<video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
 Unfortunately, current user interface architectures makes it non trivial to implement this kind of prioritization. One way to solve this is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
 
