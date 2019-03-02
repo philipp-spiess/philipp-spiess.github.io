@@ -27,7 +27,7 @@ Unfortunately, current user interface architectures makes it non trivial to impl
 
 Before we learn more about how this can be achieved, let's dig deeper and understand why the browser has issues with these kind of user interfaces.
 
-JavaScript code is executed on the same thread that is also responsible for other document lifecycles like layout and paint[^1]. This means that whenever JavaScript code runs, the browser is blocked form doing anything else.
+JavaScript code is executed in one thread – meaning that only one line of JavaScript can be run at any given time. The same thread is also responsible for other document lifecycles like layout and paint[^1]. This means that whenever JavaScript code runs, the browser is blocked form doing anything else.
 
 To keep the user interface responsive, we only have a very short time frame before we need to be able to receive the next input events. In the browser run loop visualization presented in Subhie Panicker’s and Jason Miller’s talk [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread) at the Chrome Dev Summit 2018 below, we can see that we only have 16 milliseconds (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
 
@@ -63,7 +63,7 @@ To implement a properly scheduled user interface with React, we have to look int
   - `Low` (10s timeout) for tasks that can be deferred but must still complete eventually (e.g. an analytics ping).
   - `Idle` (no timeout) for tasks that do not have to run at all. (e.g. hidden off-screen content).
 
-  The timeouts for each priority level are necessary to make sure that lower priority work still runs even if we have so much higher priority work to do, that the higher priority work could run continuously. In scheduling algorithms, this problem is refereed to as [starvation](<https://en.wikipedia.org/wiki/Starvation_(computer_science)>). The timeouts give us the guarantee that every scheduled task will eventually run. For example we won't miss a single analytics ping even if we have ongoing animations in our app.
+  The timeouts for each priority level are necessary to make sure that lower priority work still runs even if we have so much higher priority work to do, that the higher priority work could run continuously. In scheduling algorithms, this problem is referred to as [starvation](<https://en.wikipedia.org/wiki/Starvation_(computer_science)>). The timeouts give us the guarantee that every scheduled task will eventually run. For example we won't miss a single analytics ping even if we have ongoing animations in our app.
 
   ➡️ With this feature, we're can run tasks with different importance.
 
@@ -204,7 +204,7 @@ function SearchBox(props) {
 }
 ```
 
-If we take another look at the Performance tab with this change and zoom towards the end, we will see that our analytics are now send after all rendering work has completed and so the total work in our app is perfectly scheduled:
+If we take another look at the Performance tab with this change and zoom towards the end, we will see that our analytics are now sent after all rendering work has completed and so the total work in our app is perfectly scheduled:
 
 ![Screenshot of Chrome DevTools that show that that React breaks down the rendering work into small chunks. Analytics are sent at the end after all rendering work has completed.](devtools-normal-and-low.png)
 
@@ -214,7 +214,7 @@ Try it out:
 
 ## Limitations of the Scheduler
 
-With the Scheduler, it is possible to control when certain callbacks can be executed. It is build deep into the latest React implementation and works out of the box with Concurrent mode.
+With the Scheduler, it is possible to control when certain callbacks can be executed. It is built deep into the latest React implementation and works out of the box with Concurrent mode.
 
 There are two limitations of the Scheduler though:
 
