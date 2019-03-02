@@ -3,70 +3,73 @@ title: "Scheduling in React"
 date: "2019-03-15T12:00:00.000Z"
 ---
 
-In modern applications, user interfaces often have to juggle multiple parts at the same time: A search component needs to respond to user input while providing auto completion results; An interactive dashboard needs to update the charts while loading data from the server and sending analytics data to your backend.
+In modern applications, user interfaces often have to juggle multiple tasks at the same time: A search component needs to respond to user input while providing auto completion results; An interactive dashboard needs to update the charts while loading data from the server and sending analytics data to your backend.
 
 All these parallel steps can lead to janky interfaces and unhappy users – Let's learn how we can fix this.
 
 ## Scheduling in User Interfaces
 
-**Users expect immediate feedback.** Wether a user is clicking on a button or adding text to an input field, they expect some kind of confirmation immediately. The button should show a modal, or the input field will display the key that was typed.
+Our users expect immediate feedback. Wether they are clicking on a button or adding text to an input field, they expect some kind of immediate confirmation. The button should show a modal and the input field should display the key that was typed.
 
-To visualize this, let's take a look at the demo application that Dan Abramov showed us at his talk [Beyond React 16](https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html) at JSConf Iceland 2018. The more you type into the input box above, the more detailed the charts below will get. Since both of those updates run at the same time, the input feels janky.
+To visualize what happens when this is not the case, let's take a look at the demo application that Dan Abramov presented at his talk [Beyond React 16](https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html) at JSConf Iceland 2018.
+
+The application works like this: The more you type into the input below, the more detailed the charts below will get. Since both of those updates (the input element and the chart) run at the same time, the input feels janky if we type a lot of text:
 
 <video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay loop></video>
 
-One thing that we can see in the example above is that it's more important to update the text box with the user input than it is to update the carts. A version that prioritizes that will appear a lot more responsive to the end user:
+In this example though, it's more important to update the text box with the user input as opposed to updating the charts. A version that prioritizes the input will appear a lot more responsive to the end user although the same computation time is required:
 
 <video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay loop></video>
 
-Unfortunately, current user interface architectures makes it non trivial to implement this kind of prioritization. One way to solve this is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this is that the charts still render in one go synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
+Unfortunately, current user interface architectures makes it non trivial to implement this kind of prioritization. One way to solve this is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
 
 ## Browser Event Loop
 
-Before we learn more about concrete solutions, let's dig deeper and understand why the browser has issues these kind of user interfaces.
+Before we learn more about how this can be achieved, let's dig deeper and understand why the browser has issues with these kind of user interfaces.
 
-Most JavaScript code is executed on the same thread that is also responsible for other document lifecycles like layout and paint[^1]. This means that whenever your JavaScript code runs, the browser is blocked form doing anything else.
+JavaScript code is executed on the same thread that is also responsible for other document lifecycles like layout and paint[^1]. This means that whenever JavaScript code runs, the browser is blocked form doing anything else.
 
-To keep the user interface responsive, we only have a very short time frame before we need to be able to receive the next input events. In the browser run loop visualization[^2] below, you can see that we only have 16 milliseconds (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed.
+To keep the user interface responsive, we only have a very short time frame before we need to be able to receive the next input events. In the browser run loop visualization presented in Subhie Panicker’s and Jason Miller’s talk [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread) at the Chrome Dev Summit 2018 below, we can see that we only have 16 milliseconds (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
 
 ![The browser event loop starts by running input handlers, followed by animation frame callbacks, and ends with document lifecycles (style, layout, paint). All of this should complete within one frame which is approximately 16 milliseconds on a 60Hz display.](event-loop-browser.png)
 
-Most JavaScript frameworks (including the current version of React) will run updates synchronously. You can think of this as a function `render()` which will only return once the DOM was updated. During this time, the main thread is blocked.
+Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this as a function `render()` which will only return once the DOM was updated. During this time, the main thread is blocked.
 
 ## Problems With Current Solutions
 
-From all of the information above, we can formulate two problems that we have to solve in order to get more responsive user interfaces:
+With the information above, we can formulate two problems that we have to solve in to get to more responsive user interfaces:
 
-1. **Long running tasks cause frame drops.** We need to make sure our tasks are small and can be completed within a couple of milliseconds.
-2. **Different parts have different importance.** In the example above you could see that prioritizing the input box leads to a better user experience. We need a way to schedule work.
+1. **Long running tasks cause frame drops.** We need to make sure that all of our tasks are small and can be completed within a couple of milliseconds so that we can run them within one frame.
+
+2. **Different tasks have different importance.** In the example application above we saw that prioritizing the user input leads to a better experience overall. To do this, we need a way to schedule work.
 
 ## Concurrent React and the Scheduler
 
 _⚠️ Warning: The following APIs are not stable yet and will change. I will do my best to keep this post updated._
 
-To implement a properly scheduled user interface with React, we have to look into two (still unstable) React features:
+To implement a properly scheduled user interface with React, we have to look into two new React features:
 
-- **Concurrent React (also known as Time Slicing).** With the help of the new [Fiber architecture](https://www.youtube.com/watch?v=ZCuYPiUIONs) rewrite that got release with React v16, React can now pause rendering of large component trees and yield[^3] to the main thread before resuming.
+- **Concurrent React (also known as Time Slicing).** With the help of the new [Fiber architecture](https://www.youtube.com/watch?v=ZCuYPiUIONs) rewrite that got released with React 16, React can now pause during rendering and yield[^2] to the main thread.
 
-  ➡️ With this feature, we're able to split long running rendering tasks into smaller chunks.
+  ➡️ With this feature, we're able to split long running rendering tasks into small chunks.
 
-- **Scheduler.** With a general purpose browser scheduler developed by the React Core team, it's possible to register callbacks with different priority levels.
+- **Scheduler.** A general purpose cooperative main thread scheduler developed by the React Core team makes it possible to register callbacks with different priority levels in the browser.
 
-  The different priority levels come with a timeout. At the point of writing this article, we have:
+  At the time of writing this article, the priority levels are:
 
-  - `Immediate` for tasks that need to run now.
+  - `Immediate` for tasks that need to run synchronously.
   - `UserBlocking` (250ms timeout) for tasks that should run as the result of a user interaction (e.g. a button click).
-  - `Normal` (5s timeout) for rendering non-interactive parts.
-  - `Low` (10s timeout) for tasks that can be deferred but must still complete (e.g. an analytics ping).
-  - `Idle` (no timeout) for tasks that do not have to run. (e.g. offscreen content that is promoted to a higher priority when it becomes visible).
+  - `Normal` (5s timeout) for rendering non-interactive parts of the screen.
+  - `Low` (10s timeout) for tasks that can be deferred but must still complete eventually (e.g. an analytics ping).
+  - `Idle` (no timeout) for tasks that do not have to run at all. (e.g. hidden off-screen content).
 
-  The timeouts are necessary to make sure that lower priority work still runs at all even if you have so much higher priority work to do, that it could run continuously. In scheduling algorithms, this problem is refereed to as [starvation](<https://en.wikipedia.org/wiki/Starvation_(computer_science)>). It gives us the guarantee that every timeout will eventually runs (e.g. we won't miss a single analytics ping even if we have ongoing animations in our app).
+  The timeouts for each priority level are necessary to make sure that lower priority work still runs even if we have so much higher priority work to do, that the higher priority work could run continuously. In scheduling algorithms, this problem is refereed to as [starvation](<https://en.wikipedia.org/wiki/Starvation_(computer_science)>). The timeouts give us the guarantee that every scheduled task will eventually run. For example we won't miss a single analytics ping even if we have ongoing animations in our app.
 
   ➡️ With this feature, we're can run tasks with different importance.
 
 ## Scheduling in Action
 
-Let's see how we can use these features to make an app feel a lot more responsive. To do this, we take a look at Scheduletron 3000, an app that I built that allows you to highlight a search term in a list of names. Let's take a look at the current implementation first.
+Let's see how we can use these features to make an app feel a lot more responsive. To do this, we take a look at [ScheduleTron 3000](https://github.com/philipp-spiess/scheduletron3000), an app that I built that allows us to highlight a search term in a list of names. Let's take a look at the implementation first:
 
 <!-- prettier-ignore -->
 ```js
@@ -86,12 +89,12 @@ function App() {
 }
 
 function SearchBox(props) {
-  const [searchValue, setSearchValue] = React.useState();
+  const [inputValue, setInputValue] = React.useState();
 
   function handleChange(event) {
     const value = event.target.value;
 
-    setSearchValue(value);
+    setInputValue(value);
     props.onChange(value);
     sendAnalyticsPing(value);
   };
@@ -99,7 +102,7 @@ function SearchBox(props) {
   return (
     <input
       type="text"
-      value={searchValue}
+      value={inputValue}
       onChange={handleChange}
     />
   );
@@ -108,43 +111,127 @@ function SearchBox(props) {
 ReactDOM.render(<App />, container);
 ```
 
-_ℹ️ This example uses [React Hooks](https://reactjs.org/docs/hooks-intro.html). If you're not familiar with them yet, take a look at the [CodeSandbox code](https://codesandbox.io/s/j3zrqpzkr5). You might also wonder why we use two different state variables for this example. I'll explain this in a bit._
+_ℹ️ This example uses [React Hooks](https://reactjs.org/docs/hooks-intro.html). If you're not familiar with them yet, take a look at the [CodeSandbox code](https://codesandbox.io/s/j3zrqpzkr5). Addition you might wonder why we use two different state variables for this example. We'll find out why in a bit._
 
-The `<SearchBox>` displays the input element which is controlled by the local state `searchValue`. When the input changes, it will call the `onChange` property with the new value. The new input value is then stored inside the `<App>` component's `searchValue` state and passed over to the `<NameList>`. At the end, we also send an analytics ping to our server.
+The `<SearchBox>` displays the input element which is controlled by the local state variable `inputValue`. When the input changes, it will call the `onChange` prop with the new value. The new value is then stored inside the `<App>` component's `searchValue` state and passed over to the `<NameList>`. At the end, we also simulate an analytics ping to our servers.
 
-Try it out! Type a name (e.g. "Adeline") in the search box below and see how it works.
+Try it out! Type a name (e.g. "Adeline") in the search box below and see how it works:
 
 <iframe src="https://codesandbox.io/embed/j3zrqpzkr5?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-You might notice that the interface is not very responsive. In the example linked above, I artificially slowed down the rendering time of the individual names. And since there are _a lot_ of them, it will have a significant impact on the applications performance.
+You can notice that the interface is not very responsive. To highlight the issue, I artificially slowed down the rendering time of the names list. And since this list is big, it has a significant impact on the applications performance. This is not good 😰.
 
-This is not good 😰. Our users expect immediate feedback but the app is unresponsive for seconds after a keystroke. To understand what's going on, let's take a look at the Chrome DevTools Performance tab. Here's a screenshot of a recording while I type the word "Ada" into the search box.
+Our users expect immediate feedback but the app is unresponsive for seconds after a keystroke. To understand what's going on, let's take a look at the DevTools' Performance tab. Here's a screenshot of a recording while I type the word "Ada" into the search box:
 
-![](devtools-sync.png)
-a
+![Screenshot of Chrome DevTools that show that the three keypress events takes 733ms to render](devtools-sync.png)
 
-a
+We can see that there are a lot of red triangles which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All of the three events are run within one frame[^4] causing that frame to take **733ms**. That's way above our average frame budget of 16ms.
 
-a
+Inside this `keypress` event, our React code will be called which causes the input value and the search value to update and then send the analytics ping. The updated state values will in turn cause the the app to re-render – down to every individual name. That's quite a lot of work that we have to do that will block the main thread!
 
-a
+The first step to improve the status quo is to enable the unstable Concurrent Mode. This can be done by wrapping a part of our React tree with the `<React.unstable_ConcurrentMode>` component like this[^3]:
 
-a
+```diff
+- ReactDOM.render(<App />, container);
++ ReactDOM.render(
++  <React.unstable_ConcurrentMode>
++    <App />
++  </React.unstable_ConcurrentMode>,
++  rootElement
++ );
+```
 
-a
+However enabling Concurrent Mode alone will not change the experience in our case. React will still receive both state updates at the same time so there's no way of knowing which of those is less important.
 
-a
+We instead want to set the input value first so that we only need to update the search box in the beginning. Updates to the search value and our analytics ping should happen later. To do this, we're using an API exposed by the Scheduler package (which can be installed with `npm i scheduler`) to enqueue a lower priority callback:
 
-a
+```js{1,10-14}
+import { unstable_next } from "scheduler";
 
-a
+function SearchBox(props) {
+  const [inputValue, setInputValue] = React.useState();
 
-a
+  function handleChange(event) {
+    const value = event.target.value;
 
-a
+    setInputValue(value);
+    unstable_next(function() {
+      props.onChange(value);
+      sendAnalyticsPing(value);
+    });
+  }
 
-a
+  return <input type="text" value={inputValue} onChange={handleChange} />;
+}
+```
+
+The API we're using,`unstable_next()`, will run the callback with the `Normal` priority. Indeed, our input box already feels a lot more responsive and no frames get dropped during typing into it anymore.
+
+Let's take another look at the Performance tab together:
+
+![Screenshot of Chrome DevTools that show that that React breaks down the rendering work into small chunks. All frames can be drawn very quickly although analytics still happen in the middle.](devtools-normal.png)
+
+We see that the long running tasks are now broken down into smaller ones that can be completed within a single frame. The red triangles that indicate frame drops are also gone.
+
+One thing that is still not ideal though is that the analytics ping (highlighted in the above screenshot) is still executed with the rendering work. Since the users of our app do not see this task, we can assign it an even lower priority:
+
+```js{3-5,18-22}
+import {
+  unstable_next,
+  unstable_LowPriority,
+  unstable_runWithPriority,
+  unstable_scheduleCallback
+} from "scheduler";
+
+function SearchBox(props) {
+  const [inputValue, setInputValue] = React.useState();
+
+  function handleChange(event) {
+    const value = event.target.value;
+
+    setInputValue(value);
+    unstable_next(function() {
+      props.onChange(value);
+    });
+    unstable_runWithPriority(unstable_LowPriority, function() {
+      unstable_scheduleCallback(function() {
+        sendAnalyticsPing(value);
+      });
+    });
+  }
+
+  return <input type="text" value={inputValue} onChange={handleChange} />;
+}
+```
+
+If we take another look at the Performance tab with this change and zoom towards the end, we will see that our analytics are now send after all rendering work has completed and so the total work in our app is perfectly scheduled:
+
+![Screenshot of Chrome DevTools that show that that React breaks down the rendering work into small chunks. Analytics are sent at the end after all rendering work has completed.](devtools-normal-and-low.png)
+
+Try it out:
+
+<iframe src="https://codesandbox.io/embed/v0lxm0xlzl?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+## Limitations of the Scheduler
+
+With the Scheduler, it is possible to control when certain callbacks can be executed. It is build deep into the latest React implementation and works out of the box with Concurrent mode.
+
+There are two limitations of the Scheduler though:
+
+1. **Resource Fighting.** The Scheduler tries to use all of the resources available. This causes issues if multiple instances of a scheduler are run on the same thread and compete for resources. We need to ensure that all parts of our application will use the same instance.
+2. **Interleaving tasks with browser work.** Since the Scheduler runs in the browser, it can only do what the browser allows us to. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.
+
+To remove those limitations, the Google Chrome team is working together with React, Polymer, Ember, Google Maps, and the Web Standards Community to create a [Scheduling API in the browser](https://github.com/spanicker/main-thread-scheduling). What an exciting time!
+
+## Conclusion
+
+Concurrent React and the Scheduler allow us to implement proper scheduling of our user interface tasks to create highly responsive applications.
+
+The official release for these features will likely happen in [Q2 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode). Until then, you can play around with the unstable APIs but be aware that they will change.
+
+If you want to be amongst the first to know when these APIs change or when documentation for the new features are written, subscribe to [This Week in React ⚛️](https://this-week-in-react.org).
 
 [^1]: The MDN web docs feature a great [article](https://developer.mozilla.org/en-US/docs/Tools/Performance/Scenarios/Intensive_JavaScript) about this issue.
-[^2]: The graphic is based on work by Subhie Panicker's and Jason Miller's talk about [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread) at the Chrome Dev Summit 2018.
-[^3]: A fancy term for returning for a function that is able to resume. Check out [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield) for a similiar concept.
+[^2]: A fancy term for returning for a function that is able to resume. Check out [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield) for a similar concept.
+[^3]: There is also an alternative way to enable Concurrent Mode by using the new [`createRoot()`](https://github.com/facebook/react/blob/1d48b4a68485ce870711e6baa98e5c9f5f213fdf/packages/react-dom/src/client/ReactDOM.js#L833-L853) API.
+[^4]: After processing the first `keypress` event, the browser sees pending events in its queue and decides to run the event listener before rendering the frame.

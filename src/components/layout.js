@@ -127,19 +127,26 @@ export const globals = css`
       color: green;
     }
 
+    .token.deleted {
+      color: #fb7da7;
+    }
+
+    .token.inserted{
+      color: #76c5a4;
+    }
+
     pre[data-line] {
       padding: 1em 0 1em 3em;
       position: relative;
     }
 
     .gatsby-highlight-code-line {
-      background-color: hsla(207, 95%, 15%, 1);
+      background-color: #2d303d;
       display: block;
-      margin-right: -1.3125rem;
       margin-left: -1.3125rem;
-      padding-right: 1em;
-      padding-left: 0.75em;
-      border-left: 0.25em solid #ffa7c4;
+      margin-right: -1.3125rem;
+      padding-left: calc(1.3125rem - 0.28rem);
+      border-left: 0.28em solid #fb7da7;
     }
 
     .gatsby-highlight {
