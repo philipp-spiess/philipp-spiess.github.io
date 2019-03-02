@@ -53,9 +53,12 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d public -b master"
+    "deploy": "gh-pages -d public -b master",
+    "prestage": "npm run build",
+    "stage": "surge public/ --domain preview.philippspiess.com"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "surge": "^0.20.1"
   }
 }
