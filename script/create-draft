@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+
+function usage() {
+  console.error('Usage: \n  script/create-draft "scheduling-in-react"');
+  process.exit(1);
+}
+
+const slug = process.argv[2];
+if (!slug || slug.indexOf("/") !== -1) {
+  console.error(`Invalid slug passed as parameter: ${slug}\n`);
+  usage();
+}
+
+const date = new Date();
+date.setHours(0);
+date.setMinutes(0);
+date.setSeconds(0);
+date.setMilliseconds(0);
+
+const content = `---
+title: ${slug}
+date: "${date.toISOString()}"
+---
+
+`;
+
+fs.mkdirSync(`content/blog/${slug}/`);
+fs.writeFileSync(`content/blog/${slug}/index.md`, content);
