@@ -3,13 +3,13 @@ title: "Scheduling in React"
 date: "2019-03-15T12:00:00.000Z"
 ---
 
-In modern applications, user interfaces often have to juggle multiple tasks at the same time: A search component needs to respond to user input while providing auto completion results; An interactive dashboard needs to update the charts while loading data from the server and sending analytics data to your backend.
+In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component needs to respond to user input while providing auto completion results; An interactive dashboard needs to update the charts while loading data from the server and sending analytics data to your backend.
 
-All these parallel steps can lead to janky interfaces and unhappy users, so let’s learn how we can fix this.
+All these parallel steps can lead to slow and unresponsive interfaces and unhappy users, so let’s learn how we can fix this.
 
 ## Scheduling in User Interfaces
 
-Our users expect immediate feedback. Whether they are clicking on a button to open a modal or adding text to an input field, they expect some kind of immediate confirmation. The button should show a modal and the input field should display the key that was typed.
+Our users expect immediate feedback. Whether they are clicking on a button to open a modal or adding text to an input field, they don’t want to wait before seeing some kind of confirmation. The button should show a modal and the input field should display the key that was typed.
 
 To visualize what happens when this is not the case, let’s take a look at the demo application that Dan Abramov presented at his talk, [Beyond React 16](https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html), at JSConf Iceland 2018.
 
@@ -21,7 +21,7 @@ However, in this example, it’s more important to update the input with the new
 
 <video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
-Unfortunately, current user interface architectures makes it non-trivial to implement this kind of prioritization. One way to solve this is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
+Unfortunately, current user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
 
 ## Browser Event Loop
 
@@ -29,11 +29,11 @@ Before we learn more about how this can be achieved, let’s dig deeper and unde
 
 JavaScript code is executed in one thread, meaning that only one line of JavaScript can be run at any given time. The same thread is also responsible for other document lifecycles like layout and paint.[^1] This means that whenever JavaScript code runs, the browser is blocked from doing anything else.
 
-To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. In the browser run loop visualization presented in Subhie Panicker’s and Jason Miller’s talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread), at the Chrome Dev Summit 2018 below, we can see that we only have 16 milliseconds (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
+To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. In the browser run loop visualization presented in Shubhie Panicker’s and Jason Miller’s talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread), at the Chrome Dev Summit 2018 below, we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
 
-![The browser event loop starts by running input handlers, followed by animation frame callbacks, and ends with document lifecycles (style, layout, paint). All of this should complete within one frame which is approximately 16 milliseconds on a 60Hz display.](event-loop-browser.png)
+![The browser event loop starts by running input handlers, followed by animation frame callbacks, and ends with document lifecycles (style, layout, paint). All of this should complete within one frame, which is approximately 16ms on a 60Hz display.](event-loop-browser.png)
 
-Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this as a function `render()` which will only return once the DOM was updated. During this time, the main thread is blocked.
+Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this as a function `render()` that will only return once the DOM was updated. During this time, the main thread is blocked.
 
 ## Problems with Current Solutions
 
@@ -133,7 +133,7 @@ Our users expect immediate feedback, but the app is unresponsive for seconds aft
 
 We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4] causing that frame to take **733ms**. That’s way above our average frame budget of 16ms.
 
-Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to re-render–down to every individual name. That’s quite a lot of work that we have to do that will block the main thread!
+Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!
 
 The first step to improve the status quo is to enable the unstable Concurrent Mode. This can be done by wrapping a part of our React tree with the `<React.unstable_ConcurrentMode>` component, like this[^3]:
 
@@ -175,7 +175,7 @@ The API we’re using, `unstable_next()`, will run the callback with the `Normal
 
 Let’s take another look at the Performance tab together:
 
-![Screenshot of Chrome DevTools that shows that React breaks the rendering work down into small chunks. All frames can be drawn very quickly, although analytics still happen in the middle.](devtools-normal.png)
+![Screenshot of Chrome DevTools that shows that React breaks the rendering work down into small chunks. All frames can be drawn very quickly, although the analytics notifications are still sent in the middle of the rendering work.](devtools-normal.png)
 
 We see that the long-running tasks are now broken down into smaller ones that can be completed within a single frame. The red triangles that indicate frame drops are also gone.
 
@@ -222,10 +222,10 @@ Try it out:
 
 With the Scheduler, it’s possible to control when certain callbacks can be executed. It is built deep into the latest React implementation and works out of the box with Concurrent mode.
 
-That said, tere are two limitations of the Scheduler:
+That said, there are two limitations of the Scheduler:
 
 1. **Resource Fighting.** The Scheduler tries to use all of the resources available. This causes issues if multiple instances of a scheduler run on the same thread and compete for resources. We need to ensure that all parts of our application will use the same instance.
-2. **Interleaving tasks with browser work.** Since the Scheduler runs in the browser, it can only do what the browser allows us to. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.
+2. **Interleaving tasks with browser work.** Since the Scheduler runs in the browser, it only has access to the APIs the browser exposes. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.
 
 To remove these limitations, the Google Chrome team is working together with React, Polymer, Ember, Google Maps, and the Web Standards Community to create a [Scheduling API in the browser](https://github.com/spanicker/main-thread-scheduling). What an exciting time!
 
