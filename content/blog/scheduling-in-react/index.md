@@ -9,7 +9,7 @@ All these parallel steps can lead to slow and unresponsive interfaces and unhapp
 
 ## Scheduling in User Interfaces
 
-Our users expect immediate feedback. Whether they are clicking on a button to open a modal or adding text to an input field, they don’t want to wait before seeing some kind of confirmation. The button should show a modal and the input field should display the key that was typed.
+Our users expect immediate feedback. Whether they are clicking on a button to open a modal or adding text to an input field, they don’t want to wait before seeing some kind of confirmation. For example, the button could show a modal and the input field could display the key that was typed.
 
 To visualize what happens when this is not the case, let’s take a look at the demo application that Dan Abramov presented at his talk, [Beyond React 16](https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html), at JSConf Iceland 2018.
 
@@ -17,11 +17,11 @@ The application works like this: The more you type into the input below, the mor
 
 <video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
-However, in this example, it’s more important to update the input with the new text than it is to update the charts. A version that prioritizes the input will appear a lot more responsive to the end user even though the same computation time is required:
+However, a version that prioritizes updating the input with new keystrokes will appear to run a lot faster to the end user. This is because they receive immediate feedback even though the same computation time is required:
 
 <video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
-Unfortunately, current user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to take multiple seconds during which it is not responsive. We can do better!
+Unfortunately, current user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause our user interface to be unresponsive for some time. We can do better!
 
 ## Browser Event Loop
 
