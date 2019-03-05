@@ -17,7 +17,7 @@ The application works like this: The more you type into the input below, the mor
 
 <video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
-However, a version that prioritizes updating the input with new keystrokes will appear to run a lot faster to the end user. This is because they receive immediate feedback even though the same computation time is required:
+However, a version that prioritizes updating the input with new keystrokes will appear to run a lot faster to the end user. This is because users receive immediate feedback even though the same computation time is required:
 
 <video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
@@ -25,13 +25,13 @@ Unfortunately, current user interface architectures make it non-trivial to imple
 
 ## Browser Event Loop
 
-Before we learn more about how this can be achieved, let’s dig deeper and understand why the browser has issues with these kind of user interactions.
+Before we learn more about how proper prioritizing of updates can be achieved, let’s dig deeper and understand why the browser has issues with these kind of user interactions.
 
 JavaScript code is executed in one thread, meaning that only one line of JavaScript can be run at any given time. The same thread is also responsible for other document lifecycles like layout and paint.[^1] This means that whenever JavaScript code runs, the browser is blocked from doing anything else.
 
-To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. In the browser run loop visualization presented in Shubhie Panicker’s and Jason Miller’s talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread), at the Chrome Dev Summit 2018 below, we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
+To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. At the Chrome Dev Summit 2018, Shubhie Panicker and Jason Miller gave a talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread). During the talk, they presented the browser’s run loop visualization, in which we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
 
-![The browser event loop starts by running input handlers, followed by animation frame callbacks, and ends with document lifecycles (style, layout, paint). All of this should complete within one frame, which is approximately 16ms on a 60Hz display.](event-loop-browser.png)
+![The browser event loop starts by running input handlers. Then it runs animation frame callbacks, and it ends with document lifecycles (style, layout, paint). All of this should complete within one frame, which is approximately 16ms on a 60Hz display.](event-loop-browser.png)
 
 Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this as a function `render()` that will only return once the DOM was updated. During this time, the main thread is blocked.
 
@@ -74,7 +74,7 @@ Let’s see how we can use these features to make an app feel a lot more respons
 <!-- prettier-ignore -->
 ```js
 // The app shows a search box and a list of names. The list is
-// controlled by the searchValue state variable which is updated
+// controlled by the searchValue state variable, which is updated
 // by the search box.
 function App() {
   const [searchValue, setSearchValue] = React.useState();
@@ -131,7 +131,7 @@ Our users expect immediate feedback, but the app is unresponsive for seconds aft
 
 ![Screenshot of Chrome DevTools that shows that the three keypress events take 733ms to render.](devtools-sync.png)
 
-We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4] causing that frame to take **733ms**. That’s way above our average frame budget of 16ms.
+We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4], which causes the frame to take **733ms**. That’s way above our average frame budget of 16ms.
 
 Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!
 
@@ -225,7 +225,7 @@ With the Scheduler, it’s possible to control when certain callbacks can be exe
 That said, there are two limitations of the Scheduler:
 
 1. **Resource Fighting.** The Scheduler tries to use all of the resources available. This causes issues if multiple instances of a scheduler run on the same thread and compete for resources. We need to ensure that all parts of our application will use the same instance.
-2. **Interleaving tasks with browser work.** Since the Scheduler runs in the browser, it only has access to the APIs the browser exposes. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.
+2. **Balancing user-defined tasks with browser work.** Since the Scheduler runs in the browser, it only has access to the APIs the browser exposes. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.
 
 To remove these limitations, the Google Chrome team is working together with React, Polymer, Ember, Google Maps, and the Web Standards Community to create a [Scheduling API in the browser](https://github.com/spanicker/main-thread-scheduling). What an exciting time!
 
