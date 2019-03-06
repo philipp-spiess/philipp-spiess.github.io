@@ -3,7 +3,7 @@ title: "Scheduling in React"
 date: "2019-03-15T12:00:00.000Z"
 ---
 
-In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component needs to respond to user input while providing auto completion results, and an interactive dashboard needs to update charts while loading data from the server and sending analytics data to your backend.
+In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user input while providing auto completion results, and an interactive dashboard might need to update charts while loading data from the server and sending analytics data to a backend.
 
 All these parallel steps can lead to slow and unresponsive interfaces and unhappy users, so let’s learn how we can fix this.
 
@@ -29,11 +29,11 @@ Before we learn more about how proper prioritizing of updates can be achieved, l
 
 JavaScript code is executed in one thread, meaning that only one line of JavaScript can be run at any given time. The same thread is also responsible for other document lifecycles, like layout and paint.[^1] This means that whenever JavaScript code runs, the browser is blocked from doing anything else.
 
-To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. At the Chrome Dev Summit 2018, Shubhie Panicker and Jason Miller gave a talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread). During the talk, they presented the browser’s run loop visualization, in which we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next events need to be processed:
+To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. At the Chrome Dev Summit 2018, Shubhie Panicker and Jason Miller gave a talk, [A Quest to Guarantee Responsiveness](https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread). During the talk, they presented the browser’s run loop visualization, in which we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next event needs to be processed:
 
 ![The browser event loop starts by running input handlers. Then it runs animation frame callbacks, and it ends with document lifecycles (style, layout, paint). All of this should complete within one frame, which is approximately 16ms on a 60Hz display.](event-loop-browser.png)
 
-Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this as a function `render()` that will only return once the DOM is updated. During this time, the main thread is blocked.
+Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this behavior as a function `render()` that will only return once the DOM is updated. During this time, the main thread is blocked.
 
 ## Problems with Current Solutions
 
@@ -131,7 +131,7 @@ Our users expect immediate feedback, but the app is unresponsive for seconds aft
 
 ![Screenshot of Chrome DevTools that shows that the three keypress events take 733ms to render.](devtools-sync.png)
 
-We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4] which causes the frame to take **733ms**. That’s way above our average frame budget of 16ms.
+We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4] which causes the frame to extend to **733ms**. That’s way above our average frame budget of 16ms.
 
 Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!
 
@@ -210,7 +210,7 @@ function SearchBox(props) {
 }
 ```
 
-If we take another look at the Performance tab with this change and zoom toward the end, we’ll see that our analytics are now sent after all rendering work has completed, and so the total work in our app is perfectly scheduled:
+If we take another look at the Performance tab with this change and zoom toward the end, we’ll see that our analytics are now sent after all rendering work has completed, and so all the tasks in our app are perfectly scheduled:
 
 ![Screenshot of Chrome DevTools that show that React breaks the rendering work down into small chunks. Analytics are sent at the end after all rendering work has completed.](devtools-normal-and-low.png)
 
