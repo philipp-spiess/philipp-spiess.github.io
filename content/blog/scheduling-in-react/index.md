@@ -55,7 +55,7 @@ To implement a properly scheduled user interface with React, we have to look int
 
   ➡️ With this feature, we’re able to split long-running rendering tasks into small chunks.
 
-- **Scheduler.** The general general purpose cooperative main thread scheduler is developed by the React Core team and makes it possible to register callbacks with different priority levels in the browser.
+- **Scheduler.** The general purpose cooperative main thread scheduler is developed by the React Core team and makes it possible to register callbacks with different priority levels in the browser.
 
   At the time of writing this article, the priority levels are:
 
