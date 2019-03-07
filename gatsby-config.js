@@ -3,7 +3,7 @@ module.exports = {
     title: "Philipp Spiess",
     author: "Philipp Spiess",
     description:
-      "Lead Engineer at PSPDFKit for Web, React DOM team member, and curator of This Week in React. He loves learning and building usable interaction designs.",
+      "Web Engineer at PSPDFKit for Web, React DOM team member, and curator of This Week in React. He loves learning and building usable interaction designs.",
     siteUrl: "https://philippspiess.com"
   },
   plugins: [
