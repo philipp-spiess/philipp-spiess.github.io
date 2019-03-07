@@ -51,7 +51,7 @@ To implement a properly scheduled user interface with React, we have to look int
 
 - **Concurrent React (also known as Time Slicing).** With the help of the new [Fiber architecture](https://www.youtube.com/watch?v=ZCuYPiUIONs) rewrite that was released with React 16, React can now pause during rendering and yield[^2] to the main thread.
 
-  We will hear more about Concurrent React in the future but for now it is important to understand that when this mode is enabled, React will split the synchronous rendering of our React components into pieces that are run over multiple frames.
+  We will hear more about Concurrent React in the future. For now it is important to understand that when this mode is enabled, React will split the synchronous rendering of our React components into pieces that are run over multiple frames.
 
   ➡️ With this feature, we’re able to split long-running rendering tasks into small chunks.
 
@@ -137,7 +137,7 @@ Our users expect immediate feedback, but the app is unresponsive for quite some 
 
 We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^5] which causes the duration of the frame to extend to **733ms**. That’s way above our average frame budget of 16ms.
 
-Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with this naive approach, it would block the main thread!
+Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!
 
 The first step toward improving the status quo is to enable the unstable Concurrent Mode. This can be done by wrapping a part of our React tree with the `<React.unstable_ConcurrentMode>` component, like this[^4]:
 
@@ -211,7 +211,7 @@ Try it out:
 
 ## Limitations of the Scheduler
 
-With the Scheduler, it’s possible to control when callbacks are executed. It’s built deep into the latest React implementation and works out of the box with Concurrent mode.
+With the Scheduler, it’s possible to control in what order callbacks are executed. It’s built deep into the latest React implementation and works out of the box with Concurrent mode.
 
 That said, there are two limitations of the Scheduler:
 
@@ -222,7 +222,7 @@ To remove these limitations, the Google Chrome team is working together with Rea
 
 ## Conclusion
 
-Concurrent React and the Scheduler allow us to implement scheduling of tasks in our user interface which will allow us to create highly responsive applications.
+Concurrent React and the Scheduler allow us to implement scheduling of tasks in our applications which will allow us to create highly responsive user interfaces.
 
 The official release for these features will likely happen in [Q2 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode). Until then, you can play around with the unstable APIs, but be aware that they will change.
 
