@@ -106,7 +106,7 @@ export const globals = css`
     }
 
     .token.class-name {
-      color: #76c5a4;
+      color: #56c9db;
     }
 
     .token.tag,
@@ -127,19 +127,26 @@ export const globals = css`
       color: green;
     }
 
+    .token.deleted {
+      color: #fb7da7;
+    }
+
+    .token.inserted{
+      color: #76c5a4;
+    }
+
     pre[data-line] {
       padding: 1em 0 1em 3em;
       position: relative;
     }
 
     .gatsby-highlight-code-line {
-      background-color: hsla(207, 95%, 15%, 1);
+      background-color: #2d303d;
       display: block;
-      margin-right: -1.3125rem;
       margin-left: -1.3125rem;
-      padding-right: 1em;
-      padding-left: 0.75em;
-      border-left: 0.25em solid #ffa7c4;
+      margin-right: -1.3125rem;
+      padding-left: calc(1.3125rem - 0.28rem);
+      border-left: 0.28em solid #fb7da7;
     }
 
     .gatsby-highlight {
@@ -150,14 +157,15 @@ export const globals = css`
       -webkit-overflow-scrolling: touch;
       overflow: auto;
 
-      margin-left: calc(-1.75rem / 2) !important;
-      margin-right: calc(-1.75rem / 2) !important;
-      max-width: 610px !important;
+      margin-left: calc(100% / 2 - 100vw / 2 )!important
+      margin-right: calc(100% / 2 - 100vw / 2 )!important
+      width: 100vw !important;
 
       @media screen and (min-width: 700px) {
         margin-left: -50px !important;
         margin-right: -50px !important;
-        max-width: 700px !important;
+        width: auto !import;
+        max-width: calc(700px - 1.75rem / 2) !important;
       }
     }
 

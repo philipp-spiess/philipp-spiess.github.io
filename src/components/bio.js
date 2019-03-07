@@ -82,7 +82,7 @@ export default function Bio() {
               </div>
 
               <p className={intro}>
-                Lead Engineer at{" "}
+                Web Engineer at{" "}
                 <OutboundLink
                   href="https://pspdfkit.com/pdf-sdk/web/"
                   target="_blank"

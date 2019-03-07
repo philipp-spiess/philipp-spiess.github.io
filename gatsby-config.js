@@ -3,7 +3,7 @@ module.exports = {
     title: "Philipp Spiess",
     author: "Philipp Spiess",
     description:
-      "Lead Engineer at PSPDFKit for Web, React DOM team member, and curator of This Week in React. He loves learning and building usable interaction designs.",
+      "Web Engineer at PSPDFKit for Web, React DOM team member, and curator of This Week in React. He loves learning and building usable interaction designs.",
     siteUrl: "https://philippspiess.com"
   },
   plugins: [
@@ -28,8 +28,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 700,
-              linkImagesToOriginal: false
+              maxWidth: 700
             }
           },
           {
@@ -40,7 +39,8 @@ module.exports = {
           },
           "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
-          "gatsby-remark-smartypants"
+          "gatsby-remark-smartypants",
+          "gatsby-remark-reading-time"
         ]
       }
     },
@@ -70,7 +70,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-typography",
       options: {
-        pathToConfigModule: `src/utils/typography`
+        pathToConfigModule: "src/utils/typography"
       }
     },
     "gatsby-plugin-linaria"
