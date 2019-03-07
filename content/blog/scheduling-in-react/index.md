@@ -1,6 +1,6 @@
 ---
 title: "Scheduling in React"
-date: "2019-03-15T12:00:00.000Z"
+date: "2019-03-07T16:00:00.000Z"
 ---
 
 In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user input while providing auto completion results, and an interactive dashboard might need to update charts while loading data from the server and sending analytics data to a backend.
