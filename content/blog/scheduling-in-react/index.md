@@ -67,7 +67,7 @@ To implement a properly scheduled user interface with React, we have to look int
 
   The timeouts for each priority level are necessary to make sure that lower priority work still runs even if we have so much higher priority work to do that the higher priority work could run continuously. In scheduling algorithms, this problem is referred to as [starvation](<https://en.wikipedia.org/wiki/Starvation_(computer_science)>). The timeouts give us the guarantee that every scheduled task will eventually run. For example, we won’t miss a single analytics notification, even if we have ongoing animations in our app.
 
-  Under the hood, the Scheduler will store all registered callbacks in a list ordered by the expiration time (which is the time at which the callback was registered plus the timeout of the priority level). Then, the Scheduler will itself register a callback that is run after the next frame is drawn by the browser.[^3] Within this callback, the Scheduler will execute as many of the registered callbacks until it’s time to render the next frame.
+  Under the hood, the Scheduler will store all registered callbacks in a list ordered by the expiration time (which is the time at which the callback was registered plus the timeout of the priority level). Then, the Scheduler will itself register a callback that is run after the next frame is drawn by the browser.[^3] Within this callback, the Scheduler will execute as many of the registered callbacks as possible until it’s time to render the next frame.
 
   ➡️ With this feature, we can schedule tasks with different priorities.
 
