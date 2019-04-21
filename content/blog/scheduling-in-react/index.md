@@ -185,18 +185,16 @@ We see that the long-running tasks are now broken down into smaller ones that ca
 
 However, one thing that is still not ideal is that the analytics notification (highlighted in the above screenshot) is still executed with the rendering work. Since the users of our app do not see this task, we can schedule a callback with an even lower priority for that:
 
+<!-- prettier-ignore -->
 ```js
 import {
   unstable_LowPriority,
-  unstable_runWithPriority,
   unstable_scheduleCallback
 } from "scheduler";
 
 function sendDeferredAnalyticsNotification(value) {
-  unstable_runWithPriority(unstable_LowPriority, function() {
-    unstable_scheduleCallback(function() {
-      sendAnalyticsNotification(value);
-    });
+  unstable_scheduleCallback(unstable_LowPriority, function() {
+    sendAnalyticsNotification(value);
   });
 }
 ```
