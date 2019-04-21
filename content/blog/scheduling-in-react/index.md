@@ -45,7 +45,7 @@ With the information above, we can formulate two problems that we have to solve 
 
 ## Concurrent React and the Scheduler
 
-_⚠️ Warning: The following APIs are not yet stable and will change. I will do my best to keep this post updated._
+_⚠️ Warning: The following APIs are not yet stable and will change. I will do my best to keep this post updated (Last Update: April 2019)._
 
 To implement a properly scheduled user interface with React, we have to look into two upcoming React features:
 
