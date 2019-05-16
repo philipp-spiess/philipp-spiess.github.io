@@ -21,7 +21,7 @@ However, a version that prioritizes updating the input with new keystrokes will 
 
 <video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video>
 
-Unfortunately, current user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause the user interface to be unresponsive for some time. We can do better!
+Unfortunately, current web user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by [debouncing](https://davidwalsh.name/javascript-debounce-function) the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause the user interface to be unresponsive for some time. We can do better!
 
 ## Browser Event Loop
 
