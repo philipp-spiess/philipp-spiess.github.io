@@ -201,7 +201,7 @@ If we now use `sendDeferredAnalyticsNotification()` in our search box component 
 
 Try it out:
 
-<iframe src="https://codesandbox.io/embed/v0lxm0xlzl?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://codesandbox.io/embed/71ly7qx83x?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Limitations of the Scheduler
 
