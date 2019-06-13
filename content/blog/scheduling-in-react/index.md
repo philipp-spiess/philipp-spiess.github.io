@@ -135,20 +135,16 @@ Our users expect immediate feedback, but the app is unresponsive for quite some 
 
 ![Screenshot of Chrome DevTools that shows that the three keypress events take 733ms to render.](devtools-sync.png)
 
-We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^5] which causes the duration of the frame to extend to **733ms**. That’s way above our average frame budget of 16ms.
+We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a `keypress` event being fired. All three events run within one frame,[^4] which causes the duration of the frame to extend to **733ms**. That’s way above our average frame budget of 16ms.
 
 Inside this `keypress` event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!
 
-The first step toward improving the status quo is to enable the unstable Concurrent Mode. This can be done by wrapping a part of our React tree with the `<React.unstable_ConcurrentMode>` component, like this[^4]:
+The first step toward improving the status quo is to enable the unstable Concurrent Mode. This can be done by creating the React root with the new `ReactDOM.createRoot` API like this:
 
 ```diff
 - ReactDOM.render(<App />, container);
-+ ReactDOM.render(
-+  <React.unstable_ConcurrentMode>
-+    <App />
-+  </React.unstable_ConcurrentMode>,
-+  rootElement
-+ );
++ const root = ReactDOM.unstable_createRoot(rootElement);
++ root.render(<App />);
 ```
 
 However, enabling Concurrent Mode alone will not change the experience in our case. React will still receive both state updates at the same time, so there’s no way of knowing which is less important.
@@ -229,5 +225,4 @@ If you want to be among the first to know when these APIs change or when documen
 [^1]: The MDN web docs feature a great [article](https://developer.mozilla.org/en-US/docs/Tools/Performance/Scenarios/Intensive_JavaScript) about this issue.
 [^2]: This is a fancy term for returning for a function that is able to resume. Check out [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield) for a similar concept.
 [^3]: In the [current implementation](https://github.com/facebook/react/blob/master/packages/scheduler/src/forks/SchedulerHostConfig.default.js), this is achieved by using [`postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) inside a [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) callback. This will then be called right after the frame is rendered.
-[^4]: There is also an alternative way to enable Concurrent Mode by using the new [`createRoot()`](https://github.com/facebook/react/blob/1d48b4a68485ce870711e6baa98e5c9f5f213fdf/packages/react-dom/src/client/ReactDOM.js#L833-L853) API.
-[^5]: After processing the first `keypress` event, the browser sees pending events in its queue and decides to run the event listener before rendering the frame.
+[^4]: After processing the first `keypress` event, the browser sees pending events in its queue and decides to run the event listener before rendering the frame.
