@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:rgba(0, 0, 0, 0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Tahoma, Helvetica, sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:0;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:rgba(0, 0, 0, 0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:2.625rem;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:0;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:1.75rem;}a{box-shadow:inset 0 -1px 0 0 currentColor;color:#8e6e15;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#8e6e15;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}</style><style data-href="/styles.33cd4784b560b79d7342.css">@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}.bprhekf{text-align:left;-webkit-flex-direction:column;flex-direction:column}.am5wy80,.bprhekf{display:-webkit-flex;display:flex}.am5wy80{min-width:calc(100px + 1.75rem);padding-top:8px}.t46x00t{font-size:1.2rem;font-weight:700}.i168ru1r{color:rgba(0,0,0,.5)}.idf8opn{margin:1.25rem 0}.lzrwvv{margin:0;display:-webkit-flex;display:flex;list-style-type:none;max-width:300px}.lzrwvv>li{margin:0 .29167rem .29167rem;-webkit-flex-grow:1;flex-grow:1}.lzrwvv>li:first-child{margin-left:0}.lzrwvv>li:last-child{margin-right:0}html{background-color:#fffcf5}@media screen and (min-width:560px){.post .bio{-webkit-flex-direction:row!important;flex-direction:row!important}}@media screen and (max-width:700px) and (min-width:560px){.index .bio{-webkit-flex-direction:row!important;flex-direction:row!important}}:not(pre)>code[class*=language-]{border-radius:.3em;background:#1a1d27;color:#fff;padding:.15em .3em}code[class*=language-],pre[class*=language-]{color:#fff;background:none;font-family:Consolas,Menlo,Monaco,source-code-pro,Courier New,monospace;-webkit-font-feature-settings:normal;font-feature-settings:normal;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;margin-bottom:0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{overflow:auto;padding:1.3125rem}.token.attr-name{color:green}.token.comment{color:#5e6173;font-style:italic}.token.string,.token.url{color:#e8d56d}.token.variable{color:green}.token.number{color:#af98e6}.token.builtin,.token.char,.token.function{color:#76c5a4}.token.constant{color:#56c9db}.token.punctuation{color:#88898f}.token.doctype,.token.selector{color:green}.token.class-name{color:#56c9db}.token.keyword,.token.operator,.token.tag{color:#fb7da7}.token.boolean{color:#af98e6}.token.namespace,.token.property{color:green}.token.deleted{color:#fb7da7}.token.inserted{color:#76c5a4}pre[data-line]{padding:1em 0 1em 3em;position:relative}.gatsby-highlight-code-line{background-color:#2d303d;display:block;margin-left:-1.3125rem;margin-right:-1.3125rem;padding-left:1.0325rem;border-left:.28em solid #fb7da7}.gatsby-highlight{margin-bottom:1.75rem;border-radius:10px;background:#1a1d27;-webkit-overflow-scrolling:touch;overflow:auto;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;width:100vw!important}@media screen and (min-width:700px){.gatsby-highlight{margin-left:-50px!important;margin-right:-50px!important;width:auto !import;max-width:calc(700px - .875rem)!important}}@media (max-width:700px){.gatsby-highlight{border-radius:0}}.gatsby-highlight pre[class*=language-]{float:left;min-width:100%}.l18j298g{margin-bottom:3.5rem}.h9gspy{width:100%;height:3.5rem;line-height:3.5rem}.h9gspy h3{display:inline-block;vertical-align:top;line-height:3.5rem;margin:0 0 0 .75rem;font-weight:700;font-size:1.2rem}.h9gspy img{margin-top:calc((3.5rem - 30px)/2);margin-bottom:calc((3.5rem - 30px)/2)}@media screen and (min-width:500px){.h9gspy{padding-left:1.75rem;padding-right:1.75rem}}.sktosja{-webkit-flex:1 1 0%;flex:1 1}.c1s19ez3{max-width:610px;padding:0 .875rem;margin:0 auto}.c1s19ez3 .gatsby-resp-image-wrapper,.c1s19ez3 iframe,.c1s19ez3 video{margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;width:100vw!important;overflow:hidden}@media screen and (min-width:700px){.c1s19ez3 .gatsby-resp-image-wrapper,.c1s19ez3 iframe,.c1s19ez3 video{border-radius:10px;margin-left:-50px!important;margin-right:-50px!important;width:auto !import;max-width:calc(700px - .875rem)!important}}.c1s19ez3 .footnotes>ol>li>p{display:inline}.c1llnfj4,.hrktb2s{display:-webkit-flex;display:flex}.c1llnfj4{min-height:100vh;-webkit-align-items:flex-start;align-items:flex-start;-webkit-flex-direction:column;flex-direction:column;max-width:900px;margin:0 auto}@media screen and (min-width:700px){.c1llnfj4{-webkit-flex-direction:row;flex-direction:row}}.l8p6pvv{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;-webkit-flex-shrink:0;flex-shrink:0;padding-top:1.75rem;padding-left:.875rem;padding-right:.875rem;height:100%}@media screen and (min-width:500px){.l8p6pvv{padding-left:1.75rem;padding-right:1.75rem}}@media screen and (min-width:700px){.l8p6pvv{padding-top:3.5rem;width:350px}}.rzgs3ah{padding-bottom:3.5rem;padding-left:.875rem;padding-right:.875rem}@media screen and (min-width:500px){.rzgs3ah{padding-left:1.75rem;padding-right:1.75rem}}.p11w1uky{margin-top:2.625rem;margin-bottom:.5rem}@media screen and (min-width:500px){.p11w1uky{margin-top:3.5rem}}</style><meta name="generator" content="Gatsby 2.1.24"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#8c7001"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png"/><title data-react-helmet="true">Scheduling in React | Philipp Spiess</title><meta data-react-helmet="true" name="description" content="In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user…"/><meta data-react-helmet="true" property="og:title" content="Scheduling in React"/><meta data-react-helmet="true" property="og:description" content="In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Philipp Spiess"/><meta data-react-helmet="true" name="twitter:title" content="Scheduling in React"/><meta data-react-helmet="true" name="twitter:description" content="In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user…"/><link as="script" rel="preload" href="/webpack-runtime-fbaafb693429f2d2b4a5.js"/><link as="script" rel="preload" href="/app-5940aba18e9bf318bea1.js"/><link as="script" rel="preload" href="/styles-0dd070bb1839ef778049.js"/><link as="script" rel="preload" href="/1-13e998cd5ec567fd24bc.js"/><link as="script" rel="preload" href="/9-642faeed12dbe4fe6707.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-f4c90a66de90df1a7884.js"/><link as="fetch" rel="preload" href="/static/d/898/path---scheduling-in-react-c-5-c-f36-qZwI97ylAJmlwdJViUpM6x2Fcg.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="l18j298g"><header class="h9gspy"><div class="c1s19ez3 hrktb2s"><div><img src="https://www.gravatar.com/avatar/046db2877d2f9342de37d0d59c5df4a9?s=60" width="30" height="30" style="border-radius:50%" alt="Philipp Spiess"/><h3>Philipp Spiess</h3></div><div class="sktosja"></div><div><a href="/">All Articles</a></div></div></header><div class="c1s19ez3 post"><h1>Scheduling in React</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem;margin-top:-1.75rem">March 07, 2019<!-- --> • <!-- -->13 min read</p><div><p>In modern applications, user interfaces often have to juggle multiple tasks at the same time. For example, a search component might need to respond to user input while providing auto completion results, and an interactive dashboard might need to update charts while loading data from the server and sending analytics data to a backend.</p>
+<p>All these parallel steps can lead to slow and unresponsive interfaces and unhappy users, so let’s learn how we can fix this.</p>
+<h2>Scheduling in User Interfaces</h2>
+<p>Our users expect immediate feedback. Whether they are clicking on a button to open a modal or adding text to an input field, they don’t want to wait before seeing some kind of confirmation. For example, the button could show a modal and the input field could display the key that was typed.</p>
+<p>To visualize what happens when this is not the case, let’s take a look at the demo application that Dan Abramov presented at his talk, <a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html">Beyond React 16</a>, at JSConf Iceland 2018.</p>
+<p>The application works like this: The more you type into the input below, the more detailed the charts below will get. Since both of the updates (the input element and the chart) run at the same time, the browser has to do so much computation that it will drop some frames. This leads to noticeable delays and a bad user experience:</p>
+<p><video src="/blog/scheduling-in-react/sync-mode.mp4" muted="true" autoplay muted playsinline loop></video></p>
+<p>However, a version that prioritizes updating the input with new keystrokes will appear to the end user as though it’s running a lot faster. This is because users receive immediate feedback even though the same computation time is required:</p>
+<p><video src="/blog/scheduling-in-react/concurrent-mode.mp4" muted="true" autoplay muted playsinline loop></video></p>
+<p>Unfortunately, current web user interface architectures make it non-trivial to implement prioritization. One way to work around this problem is by <a href="https://davidwalsh.name/javascript-debounce-function">debouncing</a> the chart update. The problem with this approach is that the charts still render synchronously when the debounced callback fires, which will again cause the user interface to be unresponsive for some time. We can do better!</p>
+<h2>Browser Event Loop</h2>
+<p>Before we learn more about how proper prioritizing of updates can be achieved, let’s dig deeper and understand why the browser has issues with these kind of user interactions.</p>
+<p>JavaScript code is executed in one thread, meaning that only one line of JavaScript can be run at any given time. The same thread is also responsible for other document lifecycles, like layout and paint.<sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup> This means that whenever JavaScript code runs, the browser is blocked from doing anything else.</p>
+<p>To keep the user interface responsive, we only have a very short timeframe before we need to be able to receive the next input events. At the Chrome Dev Summit 2018, Shubhie Panicker and Jason Miller gave a talk, <a href="https://developer.chrome.com/devsummit/schedule/scheduling-on-off-main-thread">A Quest to Guarantee Responsiveness</a>. During the talk, they showed the following visualization of the browser’s run loop, in which we can see that we only have 16ms (on a typical 60Hz screen) before the next frame is drawn and the next event needs to be processed:</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/805b72e5fe22f38f3f794de9668a14cc/5854f/event-loop-browser.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 700px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 26.47754137115839%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABUUlEQVQY002MSytEcRjG/7HTKDWfwMbOQlIspViZzJmbMzdSNm4bGcUxTnPmZi7JpNE0LKx8Ad/AEmVnShbCyDHjLjXh5z9jFt769Tw97/u8ImOskNZDpPTlBpm6N1bRohpaZIVwLExYj7G6FkELG1INIkacTDpBNptkM6mTWl9q9kMI0T+JCO4i1C2ENyd9EdEXRO9WyA3NM9s1zIIiyC+2k5mzUAhZGOkVstiksw8RKP51fdsyc6QRGxdYYqe0S0S8ROtYksPBJU78OxQGptkLtXC2b+Uo30HpwMqM7d/DHhsicY4lekxbVPbHnXYcdhuKxCV9wOtG9Thwe5x43FLHXbhcTlSpXtWNfWwURbHLW6Wxn5pQ8Xs9+JqIinmDeXfFY+WWz48qUOP58Y7qww2vLyZvrw+Y99d81d6pT7VSlrdlnqplbq8vZfLN3/w0+AWYoPS+zc2MWgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="The browser event loop starts by running input handlers. Then it runs animation frame callbacks, and it ends with document lifecycles (style, layout, paint). All of this should complete within one frame, which is approximately 16ms on a 60Hz display."
+        title=""
+        src="/static/805b72e5fe22f38f3f794de9668a14cc/26338/event-loop-browser.png"
+        srcset="/static/805b72e5fe22f38f3f794de9668a14cc/fd659/event-loop-browser.png 175w,
+/static/805b72e5fe22f38f3f794de9668a14cc/bbe02/event-loop-browser.png 350w,
+/static/805b72e5fe22f38f3f794de9668a14cc/26338/event-loop-browser.png 700w,
+/static/805b72e5fe22f38f3f794de9668a14cc/efbfc/event-loop-browser.png 1050w,
+/static/805b72e5fe22f38f3f794de9668a14cc/42736/event-loop-browser.png 1400w,
+/static/805b72e5fe22f38f3f794de9668a14cc/5854f/event-loop-browser.png 1692w"
+        sizes="(max-width: 700px) 100vw, 700px"
+      />
+  </span>
+  </a></p>
+<p>Most JavaScript frameworks (including the current version of React) will run updates synchronously. We can think of this behavior as a function <code class="language-text">render()</code> that will only return once the DOM is updated. During this time, the main thread is blocked.</p>
+<h2>Problems with Current Solutions</h2>
+<p>With the information above, we can formulate two problems that we have to solve in order to get to more responsive user interfaces:</p>
+<ol>
+<li>
+<p><strong>Long-running tasks cause frame drops.</strong> We need to make sure all of our tasks are small and can be completed within a couple of milliseconds so that we can run them within one frame.</p>
+</li>
+<li>
+<p><strong>Different tasks have different priorities.</strong> In the example application above, we saw that prioritizing the user input leads to a better experience overall. To do this, we need a way to define the order and to schedule tasks accordingly.</p>
+</li>
+</ol>
+<h2>Concurrent React and the Scheduler</h2>
+<p><em>⚠️ Warning: The following APIs are not yet stable and will change. I will do my best to keep this post updated (Last Update: April 2019).</em></p>
+<p>To implement a properly scheduled user interface with React, we have to look into two upcoming React features:</p>
+<ul>
+<li>
+<p><strong>Concurrent React (also known as Time Slicing).</strong> With the help of the new <a href="https://www.youtube.com/watch?v=ZCuYPiUIONs">Fiber architecture</a> rewrite that was released with React 16, React can now pause during rendering and yield<sup id="fnref-2"><a href="#fn-2" class="footnote-ref">2</a></sup> to the main thread.</p>
+<p>We will hear more about Concurrent React in the future. For now it is important to understand that when this mode is enabled, React will split the synchronous rendering of our React components into pieces that are run over multiple frames.</p>
+<p>➡️ With this feature, we’re able to split long-running rendering tasks into small chunks.</p>
+</li>
+<li>
+<p><strong>Scheduler.</strong> The general purpose cooperative main thread scheduler is developed by the React Core team and makes it possible to register callbacks with different priority levels in the browser.</p>
+<p>At the time of writing this article, the priority levels are:</p>
+<ul>
+<li><code class="language-text">Immediate</code> for tasks that need to run synchronously.</li>
+<li><code class="language-text">UserBlocking</code> (250ms timeout) for tasks that should run as the result of a user interaction (e.g. a button click).</li>
+<li><code class="language-text">Normal</code> (5s timeout) for updates that don’t have to feel instantaneous.</li>
+<li><code class="language-text">Low</code> (10s timeout) for tasks that can be deferred but must still complete eventually (e.g. an analytics notification).</li>
+<li><code class="language-text">Idle</code> (no timeout) for tasks that do not have to run at all (e.g. hidden offscreen content).</li>
+</ul>
+<p>The timeouts for each priority level are necessary to make sure that lower priority work still runs even if we have so much higher priority work to do that the higher priority work could run continuously. In scheduling algorithms, this problem is referred to as <a href="https://en.wikipedia.org/wiki/Starvation_(computer_science)">starvation</a>. The timeouts give us the guarantee that every scheduled task will eventually run. For example, we won’t miss a single analytics notification, even if we have ongoing animations in our app.</p>
+<p>Under the hood, the Scheduler will store all registered callbacks in a list ordered by the expiration time (which is the time at which the callback was registered plus the timeout of the priority level). Then, the Scheduler will itself register a callback that is run after the next frame is drawn by the browser.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup> Within this callback, the Scheduler will execute as many of the registered callbacks as possible until it’s time to render the next frame.</p>
+<p>➡️ With this feature, we can schedule tasks with different priorities.</p>
+</li>
+</ul>
+<h2>Scheduling in Action</h2>
+<p>Let’s see how we can use these features to make an app feel a lot more responsive. To do this, we’ll take a look at <a href="https://github.com/philipp-spiess/scheduletron3000">ScheduleTron 3000</a>, an app I built that allows users to highlight a search term in a list of names. Let’s take a look at the initial implementation first:</p>
+<!-- prettier-ignore -->
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// The app shows a search box and a list of names. The list is</span>
+<span class="token comment">// controlled by the searchValue state variable, which is updated</span>
+<span class="token comment">// by the search box.</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>searchValue<span class="token punctuation">,</span> setSearchValue<span class="token punctuation">]</span> <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">handleChange</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setSearchValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span>
+      <span class="token operator">&lt;</span>SearchBox onChange<span class="token operator">=</span><span class="token punctuation">{</span>handleChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>NameList searchValue<span class="token operator">=</span><span class="token punctuation">{</span>searchValue<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// The search box renders a native HTML input element and keeps</span>
+<span class="token comment">// it controlled using the inputValue variable. When a new key</span>
+<span class="token comment">// is pressed, it will first update the local inputValue, then it</span>
+<span class="token comment">// will update the App component’s searchValue, and then it will</span>
+<span class="token comment">// simulate an analytics notification to our servers.</span>
+<span class="token keyword">function</span> <span class="token function">SearchBox</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>inputValue<span class="token punctuation">,</span> setInputValue<span class="token punctuation">]</span> <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">handleChange</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+    <span class="token function">setInputValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    props<span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sendAnalyticsNotification</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>input
+      type<span class="token operator">=</span><span class="token string">"text"</span>
+      value<span class="token operator">=</span><span class="token punctuation">{</span>inputValue<span class="token punctuation">}</span>
+      onChange<span class="token operator">=</span><span class="token punctuation">{</span>handleChange<span class="token punctuation">}</span>
+    <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> container<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p><em>ℹ️ This example uses <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a>. If you’re not familiar with this new React feature, take a look at the <a href="https://codesandbox.io/s/j3zrqpzkr5">CodeSandbox code</a>. Additionally, you might wonder why we use two different state variables for this example. We’ll find out why this is needed in a bit.</em></p>
+<p>Try it out! Type a name (e.g. “Ada Stewart”) in the search box below and see how it works:</p>
+<iframe src="https://codesandbox.io/embed/j3zrqpzkr5?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<p>You might notice that the interface is not very responsive. To amplify the issue, I artificially slowed down the rendering time of the names list. And since this list is big, it has a significant impact on the application’s performance. This is not good 😰.</p>
+<p>Our users expect immediate feedback, but the app is unresponsive for quite some time after a keystroke. To understand what’s going on, let’s take a look at the DevTools’ Performance tab. Here’s a screenshot of a recording I made while I type the name “Ada” into the search box:</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/d8e525b8fc31fdba90634f8577da8301/3e72c/devtools-sync.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 700px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 49.9223602484472%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACV0lEQVQozzWPW08TURSF5+cZBMQn/4E/w5iAQCAx8ckYhRcMSmpRUaCFliISxRcUlBbazrRzZubMrbfpHUryeTrGh5WdvfZaa++t2baN67qMq+/7OI6D53kxF4Zh3Avpcl7UMRw37l35rwZBEHvGaLfbca8JYWFZAlMIHOmoalIql5FSEkURzXoTT/rUw4YK8dB1Pda4nqvgEdbCOFCqAwzDQLNMZVabLdNCqFBLLXAsG9OU1OUfOsY6bf0tAzOh6hss/TwOrlaqmFWBrbSxV8HQVWDgq62iRNm5xI8cdOcKKzSQTYuKzFOPiljuGVfl79RaRQxZQIQVNbcpWYVYJwKDilui6ulovjpdiDydfsj1bcRw1KJ33aR/06I/rKsaMRh16A5Vf9OJ+96wwWAYxtr/GOsbkYc2uh3SKhygv39GeesJMr2Ev6eQWqRbTuHkEhSTs1S3Fwgzy3ipBerHz2n/PKCUfKo8c8jUUsyHX1+g3QLDmo3Yn6eSeYzIzhL9WKZ9Ms+oUaZxto2VfYTIzVP7tkRH8b3COsPQxskuKH4O58ui0qsDfq+geWETM79D6dcG4iJB3dik6+4xUGgaWVw9TWCk6Ln7DLx9+v4+XbGHX87g6bu0rDTXQYael2bgHKF1+30KOw84TdzBysxQO57BPZwiOJjC/HSf0+Rd8luTBEf38A6n8Y+m1HuT5D9Mq9mE+mya8GjsmaCee4jW6V1TTK9z8fEll59X0HfXsLPvcHOb6p2k4l8pfpWr7VVl3kAeJJGHSYqp1/GsqPjSzhpOJoF/kuYvFv+4w++AdNAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Screenshot of Chrome DevTools that shows that the three keypress events take 733ms to render."
+        title=""
+        src="/static/d8e525b8fc31fdba90634f8577da8301/26338/devtools-sync.png"
+        srcset="/static/d8e525b8fc31fdba90634f8577da8301/fd659/devtools-sync.png 175w,
+/static/d8e525b8fc31fdba90634f8577da8301/bbe02/devtools-sync.png 350w,
+/static/d8e525b8fc31fdba90634f8577da8301/26338/devtools-sync.png 700w,
+/static/d8e525b8fc31fdba90634f8577da8301/efbfc/devtools-sync.png 1050w,
+/static/d8e525b8fc31fdba90634f8577da8301/42736/devtools-sync.png 1400w,
+/static/d8e525b8fc31fdba90634f8577da8301/8b47e/devtools-sync.png 2100w,
+/static/d8e525b8fc31fdba90634f8577da8301/3e72c/devtools-sync.png 2576w"
+        sizes="(max-width: 700px) 100vw, 700px"
+      />
+  </span>
+  </a></p>
+<p>We can see there are a lot of red triangles, which is usually not a good sign. For every keystroke, we see a <code class="language-text">keypress</code> event being fired. All three events run within one frame,<sup id="fnref-4"><a href="#fn-4" class="footnote-ref">4</a></sup> which causes the duration of the frame to extend to <strong>733ms</strong>. That’s way above our average frame budget of 16ms.</p>
+<p>Inside this <code class="language-text">keypress</code> event, our React code will be called, which causes the input value and the search value to update and then send the analytics notification. In turn, the updated state values will cause the app to rerender down to every individual name. That’s quite a lot of work that we have to do, and with a naive approach, it would block the main thread!</p>
+<p>The first step toward improving the status quo is to enable the unstable Concurrent Mode. This can be done by creating the React root with the new <code class="language-text">ReactDOM.createRoot</code> API like this:</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token deleted">- ReactDOM.render(&lt;App />, container);</span>
+<span class="token inserted">+ const root = ReactDOM.unstable_createRoot(rootElement);</span>
+<span class="token inserted">+ root.render(&lt;App />);</span></code></pre></div>
+<p>However, enabling Concurrent Mode alone will not change the experience in our case. React will still receive both state updates at the same time, so there’s no way of knowing which is less important.</p>
+<p>We instead want to set the input value first so that we only need to update the search box in the beginning. Updates to the search value and our analytics notification should happen later. To do this, we’re using an API exposed by the Scheduler package (which can be installed with <code class="language-text">npm i scheduler</code>) to enqueue a lower priority callback:</p>
+<div class="gatsby-highlight has-highlighted-lines" data-language="js"><pre class="language-js"><code class="language-js"><span class="gatsby-highlight-code-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> unstable_next <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"scheduler"</span><span class="token punctuation">;</span></span>
+<span class="token keyword">function</span> <span class="token function">SearchBox</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>inputValue<span class="token punctuation">,</span> setInputValue<span class="token punctuation">]</span> <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">handleChange</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+    <span class="token function">setInputValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="gatsby-highlight-code-line">    <span class="token function">unstable_next</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><span class="gatsby-highlight-code-line">      props<span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="gatsby-highlight-code-line">      <span class="token function">sendAnalyticsNotification</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="gatsby-highlight-code-line">    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="gatsby-highlight-code-line">  <span class="token punctuation">}</span></span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> value<span class="token operator">=</span><span class="token punctuation">{</span>inputValue<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>handleChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Inside the API we’re using, <code class="language-text">unstable_next()</code>, all React updates will be scheduled with the <code class="language-text">Normal</code> priority, which is lower then the default priority inside an <code class="language-text">onChange</code> listener.</p>
+<p>Indeed, with this change, our input box already feels a lot more responsive, and frames no longer get dropped while we’re typing. Let’s take another look at the Performance tab together:</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/a523aeacdf07611d54568ba07f655d9d/50025/devtools-normal.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 700px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 45.50387596899225%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAACJElEQVQozy2PW1PTUBSF81N989URHR1fHN988QeAPojcdMALMwyWizDYAgKiMKI2bdokJzknl6Zp0rS0QuHzUH3Ys/ba+5s1extSSsIwRPo+URShlBr7IFC0Yu2lj5CKs3oTW2pO80EQjLkbPs8ziqKgm8XahxiO42DbNp4O9DwPW3urYaGimN7wkjTvE3cKLNen6bo0NXvDKx06PuB/eKh50zQxhPAQGrQbVXxP6tIXCQ05e+T2HB17iZ77mrhRwnFcXNvR30hcR/xjtQpX4OmculnHiGKFUDYyEVheDTewxr2M6sStXzrkiCCp4vo/CFJJQ9ZRbQ9L6FnQREQOXuzomU+1+RPDFXVsYdK97JMN+/ixR7sb0bu+IB+NkG2F044pLgt6owG9qws6g4x2PyUd9Cmu/lCMhmM+PS8wbHOT2HxHuLtMtD1FdPCS4GQOuTFDUp5EbS5w8nEa52iZuLxA9uUF4fYCrfIU3f3nZHtTZFrzvUmy4zcY+fk1F1cQHCyiVm+T1pZIlIm38pBo667WB5xVZqg5NeTxFv7pKt7JGnHlCenOhK57pOX7Wu+QHz/D8K1dkrBOJMooc46w+Yl+u0o/KjGI1xhEK7TUPnlaI1fbZHKTTK3r/YberzNMtLa0tkoM0wpGrXSLpDqN+L1D43AWt/IY8XkC63AeeTqvr1nidP0R6ugp9rdFvO+zmnuF83WWdvUtndp7EvPDuE8ba/wFmV+AFhvfpCUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Screenshot of Chrome DevTools that shows that React breaks the rendering work down into small chunks. All frames can be drawn very quickly, although the analytics notifications are still sent in the middle of the rendering work."
+        title=""
+        src="/static/a523aeacdf07611d54568ba07f655d9d/26338/devtools-normal.png"
+        srcset="/static/a523aeacdf07611d54568ba07f655d9d/fd659/devtools-normal.png 175w,
+/static/a523aeacdf07611d54568ba07f655d9d/bbe02/devtools-normal.png 350w,
+/static/a523aeacdf07611d54568ba07f655d9d/26338/devtools-normal.png 700w,
+/static/a523aeacdf07611d54568ba07f655d9d/efbfc/devtools-normal.png 1050w,
+/static/a523aeacdf07611d54568ba07f655d9d/42736/devtools-normal.png 1400w,
+/static/a523aeacdf07611d54568ba07f655d9d/8b47e/devtools-normal.png 2100w,
+/static/a523aeacdf07611d54568ba07f655d9d/50025/devtools-normal.png 2580w"
+        sizes="(max-width: 700px) 100vw, 700px"
+      />
+  </span>
+  </a></p>
+<p>We see that the long-running tasks are now broken down into smaller ones that can be completed within a single frame. The red triangles that indicate frame drops are also gone.</p>
+<p>However, one thing that is still not ideal is that the analytics notification (highlighted in the above screenshot) is still executed with the rendering work. Since the users of our app do not see this task, we can schedule a callback with an even lower priority for that:</p>
+<!-- prettier-ignore -->
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  unstable_LowPriority<span class="token punctuation">,</span>
+  unstable_scheduleCallback
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"scheduler"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">sendDeferredAnalyticsNotification</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">unstable_scheduleCallback</span><span class="token punctuation">(</span>unstable_LowPriority<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">sendAnalyticsNotification</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>If we now use <code class="language-text">sendDeferredAnalyticsNotification()</code> in our search box component and take another look at the Performance tab with this change and scroll toward the end, we’ll see that our analytics are now sent after all rendering work has completed, and so all the tasks in our app are perfectly scheduled:</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/63a84/devtools-normal-and-low.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 700px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 45.69433669511248%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB/klEQVQoz0WPa2sTURCG96fbogh+8KtIEbXUS6kVBdvQC5oKphdKIW2waXY32cs5e03TZLNJG9PN4+xK8cDDO2fmPTNzDK01URShlCKOY4IgIEkSojCkn6aEgcbTIS2rR09HPPhLLX0PjEajSg3P86pmnu/ji4ZhgNIBOopJ+tek1zfoZECn6+BLE9d1MU2TVIb1+33xh9WAMrZtG6Nnmyhp5rnS0CtRdNsNrPMadmsfp7VF5n5GOU2pySBfVR5f/KqKy7ee5HU1yLAdGxV5OGEXP/XoBTZ+bNG2znD0JY5qEaeiQUfqPj3xKVE3cuRND8u38BK3wlUuhpZVVRKQF7dMuRNmFaPZRHJ33DJnUlLW5xmT+Zh8nlc6no0YTgaSH1dkeYZhfn1F79sK1z8/kBxskNbfk9Tfia5XcVr/KLV1xvL1G1Vnlh5SnnzoErk/yOJTBr/rDC8PmOU3suH2Y+K9p0R7ywS7zwh2lvG2l/C35F57RLjzBF1bIu98p5BGi0UhLCiE+X1BUSy4F72fF9Ugw2t/IrK/oDubqPYG+mqTUbBLFgrBzj8N9xiGDYbROYOgyeT2j2yoGUVnkmuRJReiTabTHOOy8YbO0VuuDv/TOVrFOlnDlLx1sop5vEaz/hLraAXr+DX59A7fbNDcf073dI2L+gvav1bIhgl/AfrWiDNyENJJAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Screenshot of Chrome DevTools that show that React breaks the rendering work down into small chunks. Analytics are sent at the end after all rendering work has completed."
+        title=""
+        src="/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/26338/devtools-normal-and-low.png"
+        srcset="/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/fd659/devtools-normal-and-low.png 175w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/bbe02/devtools-normal-and-low.png 350w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/26338/devtools-normal-and-low.png 700w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/efbfc/devtools-normal-and-low.png 1050w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/42736/devtools-normal-and-low.png 1400w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/8b47e/devtools-normal-and-low.png 2100w,
+/static/e5ef87ea4a1dc1f0ef5c1a52776ca343/63a84/devtools-normal-and-low.png 2578w"
+        sizes="(max-width: 700px) 100vw, 700px"
+      />
+  </span>
+  </a></p>
+<p>Try it out:</p>
+<iframe src="https://codesandbox.io/embed/71ly7qx83x?fontsize=14&hidenavigation=1&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<h2>Limitations of the Scheduler</h2>
+<p>With the Scheduler, it’s possible to control in what order callbacks are executed. It’s built deep into the latest React implementation and works out of the box with Concurrent mode.</p>
+<p>That said, there are two limitations of the Scheduler:</p>
+<ol>
+<li><strong>Resource Fighting.</strong> The Scheduler tries to use all of the resources available. This causes issues if multiple instances of a scheduler run on the same thread and compete for resources. We need to ensure that all parts of our application will use the same instance.</li>
+<li><strong>Balancing user-defined tasks with browser work.</strong> Since the Scheduler runs in the browser, it only has access to the APIs the browser exposes. Document lifecycles like rendering or garbage collection can interfere with the work in an uncontrollable way.</li>
+</ol>
+<p>To remove these limitations, the Google Chrome team is working together with React, Polymer, Ember, Google Maps, and the Web Standards Community to create a <a href="https://github.com/spanicker/main-thread-scheduling">Scheduling API in the browser</a>. What an exciting time!</p>
+<h2>Conclusion</h2>
+<p>Concurrent React and the Scheduler allow us to implement scheduling of tasks in our applications which will allow us to create highly responsive user interfaces.</p>
+<p>The official release for these features will likely happen in <a href="https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode">Q2 2019</a>. Until then, you can play around with the unstable APIs, but be aware that they will change.</p>
+<p>If you want to be among the first to know when these APIs change or when documentation for the new features is written, subscribe to <a href="https://this-week-in-react.org">This Week in React ⚛️</a>.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn-1">
+<p>The MDN web docs feature a great <a href="https://developer.mozilla.org/en-US/docs/Tools/Performance/Scenarios/Intensive_JavaScript">article</a> about this issue.</p>
+<a href="#fnref-1" class="footnote-backref">↩</a>
+</li>
+<li id="fn-2">
+<p>This is a fancy term for returning for a function that is able to resume. Check out <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield">generator functions</a> for a similar concept.</p>
+<a href="#fnref-2" class="footnote-backref">↩</a>
+</li>
+<li id="fn-3">
+<p>In the <a href="https://github.com/facebook/react/blob/master/packages/scheduler/src/forks/SchedulerHostConfig.default.js">current implementation</a>, this is achieved by using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage"><code class="language-text">postMessage()</code></a> inside a <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code class="language-text">requestAnimationFrame()</code></a> callback. This will then be called right after the frame is rendered.</p>
+<a href="#fnref-3" class="footnote-backref">↩</a>
+</li>
+<li id="fn-4">
+<p>After processing the first <code class="language-text">keypress</code> event, the browser sees pending events in its queue and decides to run the event listener before rendering the frame.</p>
+<a href="#fnref-4" class="footnote-backref">↩</a>
+</li>
+</ol>
+</div></div><h4 style="margin-top:3.5rem">About the author</h4><div class="bprhekf bio"><div class="am5wy80"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/"><img src="https://www.gravatar.com/avatar/046db2877d2f9342de37d0d59c5df4a9?s=200" width="100" height="100" style="border-radius:50%" alt="Philipp Spiess"/></a></div><div class="a1jjo5az"><div class="t46x00t">Philipp Spiess <small class="i168ru1r">[ˈʃpiːs]</small></div><p class="idf8opn">Web Engineer at<!-- --> <a href="https://pspdfkit.com/pdf-sdk/web/" target="_blank" rel="noopener noreferrer">PSPDFKit for Web</a>,<!-- --> <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React DOM</a> <!-- -->team member, and curator of<!-- --> <a href="https://this-week-in-react.org" target="_blank" rel="noopener noreferrer">This Week in React</a>. He loves learning and building usable interaction designs.</p><ul class="lzrwvv"><li><a href="https://twitter.com/philippspiess" target="_blank" rel="noopener noreferrer">Twitter</a></li><li><a href="https://github.com/philipp-spiess" target="_blank" rel="noopener noreferrer">GitHub</a></li><li><a href="mailto:hello@philippspiess.com">Mail</a></li><li><a href="https://www.linkedin.com/in/philipp-spiess/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li></ul></div></div></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-30352287-1', 'auto', {});
+      
+      
+      
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-js","jsonName":"scheduling-in-react-c5c","path":"/scheduling-in-react/"};window.dataPath="898/path---scheduling-in-react-c-5-c-f36-qZwI97ylAJmlwdJViUpM6x2Fcg";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-5940aba18e9bf318bea1.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2931e18f11ce80cd2c58.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-f4c90a66de90df1a7884.js"],"component---src-pages-404-js":["/component---src-pages-404-js-459db140c41c3a2e91e4.js"],"component---src-pages-index-js":["/component---src-pages-index-js-47961fb18fdeadfc2616.js"],"pages-manifest":["/pages-manifest-b2a9e6a12e6bfa5a99cc.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-f4c90a66de90df1a7884.js" async=""></script><script src="/9-642faeed12dbe4fe6707.js" async=""></script><script src="/1-13e998cd5ec567fd24bc.js" async=""></script><script src="/styles-0dd070bb1839ef778049.js" async=""></script><script src="/app-5940aba18e9bf318bea1.js" async=""></script><script src="/webpack-runtime-fbaafb693429f2d2b4a5.js" async=""></script></body></html>
