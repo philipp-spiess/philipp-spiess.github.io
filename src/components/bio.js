@@ -82,23 +82,7 @@ export default function Bio() {
               </div>
 
               <p className={intro}>
-                Web Engineer at{" "}
-                <OutboundLink
-                  href="https://pspdfkit.com/pdf-sdk/web/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PSPDFKit for Web
-                </OutboundLink>
-                ,{" "}
-                <OutboundLink
-                  href="https://reactjs.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  React DOM
-                </OutboundLink>{" "}
-                team member, and curator of{" "}
+                Front End Engineer at Facebook, curator of{" "}
                 <OutboundLink
                   href="https://this-week-in-react.org"
                   target="_blank"
@@ -106,7 +90,15 @@ export default function Bio() {
                 >
                   This Week in React
                 </OutboundLink>
-                . He loves learning and building usable interaction designs.
+                , and{" "}
+                <OutboundLink
+                  href="https://reactjs.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  React DOM
+                </OutboundLink>{" "}
+                team member. Loves building usable interaction designs.
               </p>
               <ul className={list}>
                 <li>
