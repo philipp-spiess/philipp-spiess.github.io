@@ -60,14 +60,14 @@ const list = css`
 const noLinkStyle = {
   boxShadow: "none",
   textDecoration: "none",
-  color: "inherit"
+  color: "inherit",
 };
 
 export default function Bio() {
   return (
     <StaticQuery
       query={bioQuery}
-      render={data => {
+      render={(data) => {
         const { author } = data.site.siteMetadata;
         return (
           <div className={`${bio} bio`}>
@@ -82,7 +82,7 @@ export default function Bio() {
               </div>
 
               <p className={intro}>
-                Front End Engineer at Facebook, curator of{" "}
+                Front End Engineer at Facebook. Prev. curator of{" "}
                 <OutboundLink
                   href="https://this-week-in-react.org"
                   target="_blank"
@@ -90,7 +90,7 @@ export default function Bio() {
                 >
                   This Week in React
                 </OutboundLink>
-                , and{" "}
+                ,{" "}
                 <OutboundLink
                   href="https://reactjs.org/"
                   target="_blank"
@@ -98,7 +98,15 @@ export default function Bio() {
                 >
                   React DOM
                 </OutboundLink>{" "}
-                team member. Loves building usable interaction designs.
+                team member, and Lead Engineer at{" "}
+                <OutboundLink
+                  href="https://pspdfkit.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  PSPDFKit
+                </OutboundLink>
+                . Loves building usable interaction designs.
               </p>
               <ul className={list}>
                 <li>
