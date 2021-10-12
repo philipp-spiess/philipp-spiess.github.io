@@ -23,6 +23,10 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: metaDescription
               },
               {
+                name: "apple-mobile-web-app-capable",
+                content: "yes"
+              },
+              {
                 property: "og:title",
                 content: title
               },
