@@ -1,3 +1,5 @@
+__⚠️ This repo is outdated. Please refer to https://github.com/philipp-spiess/philippspiess.com for my up-to-date blog.__
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
